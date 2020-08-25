@@ -1,6 +1,8 @@
-package com.tassenabi.restapp.DataAccess;
+package com.tassenabi.restapp.DataAccess.JDBCDAOUserImpl;
 
 import com.tassenabi.restapp.BusinessEntity.User;
+import com.tassenabi.restapp.BusinessEntity.JDBCUser.UserForJDBC;
+import com.tassenabi.restapp.DataAccess.DAOEntity;
 import com.tassenabi.restapp.DataAccess.QueryGenerator.QueryGeneratorUser;
 import com.tassenabi.restapp.DataAccess.dataAccessConfigurations.DBConnection.IDBConnection;
 import com.tassenabi.restapp.DataAccess.dataAccessConfigurations.Util.ApplicationLogger;
@@ -20,7 +22,7 @@ import static com.tassenabi.restapp.DataAccess.dataAccessConfigurations.Util.Con
 public class DAOUserImpl implements DAOEntity {
 
     private ArrayList<User> allUsers;
-    private User user;
+    private UserForJDBC user;
     private Statement queryStatement;
     private ResultSet queryResult;
     private IDBConnection connection;
@@ -34,7 +36,7 @@ public class DAOUserImpl implements DAOEntity {
     //TestDBConnection is the implementation for IDBConnection
     public DAOUserImpl(IDBConnection connectToTestDatabase, boolean isLoggerActivated) {
 
-        user = new User();
+        user = new UserForJDBC();
         allUsers = new ArrayList<>();
         this.connection = connectToTestDatabase;
         this.isLoggerActivated = isLoggerActivated;
@@ -53,7 +55,7 @@ public class DAOUserImpl implements DAOEntity {
 
             while (queryResult.next()) {
 
-                allUsers.add(new User(queryResult.getInt(COLUMN1), queryResult.getString(COLUMN2)));
+                allUsers.add(new UserForJDBC(queryResult.getInt(COLUMN1), queryResult.getString(COLUMN2)));
 
             }
 
@@ -84,7 +86,7 @@ public class DAOUserImpl implements DAOEntity {
     }
 
     @Override
-    public User getUser(String userName) {
+    public UserForJDBC getUser(String userName) {
         //Set firstLetter to upperCase and set last to lowerLetters
         userName = formatUserNameForDatabase(userName);
 

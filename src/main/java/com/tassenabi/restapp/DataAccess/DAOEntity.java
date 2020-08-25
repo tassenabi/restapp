@@ -1,7 +1,6 @@
 package com.tassenabi.restapp.DataAccess;
 
 import com.tassenabi.restapp.BusinessEntity.User;
-
 import java.util.List;
 
 public interface DAOEntity {

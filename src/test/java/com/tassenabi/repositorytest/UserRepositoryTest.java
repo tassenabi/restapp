@@ -2,7 +2,7 @@ package com.tassenabi.repositorytest;
 
 import com.tassenabi.restapp.BusinessEntity.User;
 import com.tassenabi.restapp.DataAccess.DAOEntity;
-import com.tassenabi.restapp.DataAccess.DAOUserImpl;
+import com.tassenabi.restapp.DataAccess.JDBCDAOUserImpl.DAOUserImpl;
 import com.tassenabi.restapp.DataAccess.dataAccessConfigurations.DBConnection.IDBConnection;
 import com.tassenabi.restapp.DataAccess.dataAccessConfigurations.DBConnection.TestDBConnection;
 import com.tassenabi.restapp.Exceptions.NotInDataBaseException;
@@ -16,7 +16,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class IUserRepositoryTest {
+public class UserRepositoryTest {
 
     IDBConnection dbConnection = new TestDBConnection();
     DAOEntity daoUser = new DAOUserImpl(dbConnection, false);
