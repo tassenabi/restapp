@@ -1,7 +1,7 @@
 package com.tassenabi.restapp.Model;
 
 import com.tassenabi.restapp.BusinessEntity.User;
-import com.tassenabi.restapp.DataAccess.DAOEntity;
+import com.tassenabi.restapp.DataAccess.DAO.DAOEntity;
 
 import java.util.List;
 

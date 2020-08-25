@@ -1,4 +1,4 @@
-package com.tassenabi.restapp.DataAccess;
+package com.tassenabi.restapp.DataAccess.DAO;
 
 import com.tassenabi.restapp.BusinessEntity.User;
 import java.util.List;

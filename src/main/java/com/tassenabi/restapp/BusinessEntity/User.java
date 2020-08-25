@@ -2,6 +2,7 @@ package com.tassenabi.restapp.BusinessEntity;
 
 public class User {
 
+    //TODO Lombok Project Refactoring
     private int primaryKey;
     private String userName;
 
@@ -16,7 +17,7 @@ public class User {
 
     }
 
-    public int getPrimaryKey() {
+    public int getId() {
         return this.primaryKey;
     }
 
@@ -28,7 +29,7 @@ public class User {
         this.userName = userName;
     }
 
-    public void setPrimaryKey(int primaryKey) {
-        this.primaryKey = primaryKey;
+    public void setId(int id) {
+        this.primaryKey = id;
     }
 }

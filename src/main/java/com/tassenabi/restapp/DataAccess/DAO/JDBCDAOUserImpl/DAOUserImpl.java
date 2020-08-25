@@ -1,8 +1,8 @@
-package com.tassenabi.restapp.DataAccess.JDBCDAOUserImpl;
+package com.tassenabi.restapp.DataAccess.DAO.JDBCDAOUserImpl;
 
 import com.tassenabi.restapp.BusinessEntity.User;
 import com.tassenabi.restapp.BusinessEntity.JDBCUser.UserForJDBC;
-import com.tassenabi.restapp.DataAccess.DAOEntity;
+import com.tassenabi.restapp.DataAccess.DAO.DAOEntity;
 import com.tassenabi.restapp.DataAccess.QueryGenerator.QueryGeneratorUser;
 import com.tassenabi.restapp.DataAccess.dataAccessConfigurations.DBConnection.IDBConnection;
 import com.tassenabi.restapp.DataAccess.dataAccessConfigurations.Util.ApplicationLogger;
@@ -42,6 +42,8 @@ public class DAOUserImpl implements DAOEntity {
         this.isLoggerActivated = isLoggerActivated;
 
     }
+
+    //TODO Refactoring try-with-resources
     @Override
     public List<User> getAllUser() {
 
@@ -85,6 +87,7 @@ public class DAOUserImpl implements DAOEntity {
         return allUsers;
     }
 
+    //TODO Refactoring try-with-resources
     @Override
     public UserForJDBC getUser(String userName) {
         //Set firstLetter to upperCase and set last to lowerLetters
@@ -98,10 +101,10 @@ public class DAOUserImpl implements DAOEntity {
             if (queryResult.next()) {
 
 
-                int PK_id = queryResult.getInt(1);
+                int id = queryResult.getInt(1);
                 String userNameForObject = queryResult.getString(2);
 
-                createUserObject(PK_id, userNameForObject);
+                createUserObject(id, userNameForObject);
 
             } else {
 
@@ -129,6 +132,7 @@ public class DAOUserImpl implements DAOEntity {
         return user;
     }
 
+    //TODO Refactoring try-with-resources
     @Override
     public void deleteUser(String userName) {
 
@@ -162,6 +166,7 @@ public class DAOUserImpl implements DAOEntity {
         }
     }
 
+    //TODO Refactoring try-with-resources
     @Override
     public void updateUser(String oldUserName, String newUserName) {
 
@@ -195,6 +200,7 @@ public class DAOUserImpl implements DAOEntity {
         }
     }
 
+    //TODO Refactoring try-with-resources
     @Override
     public void insertUser(String userName){
         //Set firstLetter to upperCase and set last to lowerLetters
@@ -228,20 +234,23 @@ public class DAOUserImpl implements DAOEntity {
         }
     }
 
+    //TODO Refactoring
     private Connection openConnection() throws SQLException {
 
         return connection.getConnection();
 
     }
 
+    //TODO Refactoring
     private Statement createSQLStatement() throws SQLException {
 
         return this.openConnection().createStatement();
 
     }
 
-    private void createUserObject(int PK_id, String userName) {
-        user.setPrimaryKey(PK_id);
+    //TODO Refactoring
+    private void createUserObject(int id, String userName) {
+        user.setId(id);
         user.setUserName(userName);
     }
 }

@@ -11,7 +11,6 @@ public class DataBaseSource {
         private static File TESTDATABASEPATH= new File("/Users/tassenabi/IdeaProjects/restfulApp/restapp/src/main/java/com/tassenabi/sources/database");
         private static String TESTDATABASENAME = "userTestdatabase.db";
 
-
         public static String getDataBaseLink(){
 
             return DATABASEDRIVERNAME + DATABASEPATH.getAbsolutePath()+ "/" + DATABASENAME;
@@ -21,7 +20,6 @@ public class DataBaseSource {
 
             return DATABASEDRIVERNAME + TESTDATABASEPATH.getAbsolutePath()+ "/" + TESTDATABASENAME;
         }
-
 
         public static void getInfoSourceLinkDataBase(){
             JOptionPane.showMessageDialog(null,"Die Datenbank dieser Anwendung " +
