@@ -1,6 +1,6 @@
 package com.tassenabi.unittest;
 
-import com.tassenabi.restapp.DataAccess.QueryGenerator.QueryGeneratorUser;
+import com.tassenabi.restapp.dataAccess.queryGenerator.QueryGeneratorUser;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

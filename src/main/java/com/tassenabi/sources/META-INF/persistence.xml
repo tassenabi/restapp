@@ -7,8 +7,15 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 <persistence-unit name = "restfulApp" transaction-type="RESOURCE_LOCAL">
 
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>com.tassenabi.restapp.BusinessEntity.HibernateUser.UserForHibernate</class>
+    <class>com.tassenabi.restapp.businessEntity.hibernateUser.UserForHibernate</class>
+
     <properties>
+        <!--
+        <property name="dialect" value="org.hibernate.dialect.SQLiteDialect" />
+                    <property name="hibernate.show_sql" value="true" />
+            <property name="format_sql" value="true" />
+
+-->
         <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
         <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/Users/tassenabi/IdeaProjects/restfulApp/restapp/src/main/java/com/tassenabi/sources/database/user.db"/>
     </properties>

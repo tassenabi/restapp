@@ -1,13 +1,13 @@
 package com.tassenabi.repositorytest;
 
-import com.tassenabi.restapp.BusinessEntity.User;
-import com.tassenabi.restapp.DataAccess.DAO.DAOEntity;
-import com.tassenabi.restapp.DataAccess.DAO.JDBCDAOUserImpl.DAOUserImpl;
-import com.tassenabi.restapp.DataAccess.dataAccessConfigurations.DBConnection.IDBConnection;
-import com.tassenabi.restapp.DataAccess.dataAccessConfigurations.DBConnection.TestDBConnection;
-import com.tassenabi.restapp.Exceptions.NotInDataBaseException;
-import com.tassenabi.restapp.Model.IRepository;
-import com.tassenabi.restapp.Model.RepositoryUser;
+import com.tassenabi.restapp.businessEntity.User;
+import com.tassenabi.restapp.dataAccess.dao.DAOEntity;
+import com.tassenabi.restapp.dataAccess.dao.jdbcDAOUserImpl.DAOUserImpl;
+import com.tassenabi.restapp.dataAccess.dataAccessConfigurations.dbConnection.IDBConnection;
+import com.tassenabi.restapp.dataAccess.dataAccessConfigurations.dbConnection.TestDBConnection;
+import com.tassenabi.restapp.exceptions.NotInDataBaseException;
+import com.tassenabi.restapp.model.IRepository;
+import com.tassenabi.restapp.model.RepositoryUser;
 import org.ibex.nestedvm.Runtime;
 import org.junit.*;
 
