@@ -7,7 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static com.tassenabi.restapp.dataAccess.queryGenerator.QueryGeneratorUser.*;
+import static com.tassenabi.restapp.dataAccess.queryGenerator.QueryJdbcGenerator.QueryJdbcGeneratorUser.*;
 
 public class TblUserColumnValidator implements IDbColumnValidator {
 

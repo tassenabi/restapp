@@ -1,6 +1,6 @@
 package com.tassenabi.unittest;
 
-import com.tassenabi.restapp.dataAccess.queryGenerator.QueryGeneratorUser;
+import com.tassenabi.restapp.dataAccess.queryGenerator.QueryJdbcGenerator.QueryJdbcGeneratorUser;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +14,7 @@ public class QueryGeneratorGuestTest {
         String fetchQueryOneGuest = "SELECT PK_id, TXT_userName from TBL_USER WHERE TXT_userName = 'Robert'";
 
         //Act
-        String result = QueryGeneratorUser.fetchQueryOneUser("Robert");
+        String result = QueryJdbcGeneratorUser.fetchQueryOneUser("Robert");
 
         //Assert
         assertEquals(result, fetchQueryOneGuest);
@@ -27,7 +27,7 @@ public class QueryGeneratorGuestTest {
         String insertQueryOneGuest = "INSERT INTO TBL_USER(PK_id,TXT_userName) VALUES (? ,'Robert')";
 
         //Act
-        String result = QueryGeneratorUser.insertUserQuery("Robert");
+        String result = QueryJdbcGeneratorUser.insertUserQuery("Robert");
 
         //Assert
         assertEquals(result, insertQueryOneGuest);
@@ -40,7 +40,7 @@ public class QueryGeneratorGuestTest {
         String deleteQueryOneGuest = "DELETE FROM TBL_USER WHERE TXT_userName='Robert'";
 
         //Act
-        String result = QueryGeneratorUser.deleteQueryUser("Robert");
+        String result = QueryJdbcGeneratorUser.deleteQueryUser("Robert");
 
         //Assert
         assertEquals(result, deleteQueryOneGuest);
@@ -53,7 +53,7 @@ public class QueryGeneratorGuestTest {
         String updateQueryOneGuest = "UPDATE TBL_USER SET TXT_userName = 'Robert2' WHERE TXT_userName = 'Robert'";
 
         //Act
-        String result = QueryGeneratorUser.updateUserQuery("Robert", "Robert2");
+        String result = QueryJdbcGeneratorUser.updateUserQuery("Robert", "Robert2");
 
         //Assert
         assertEquals(result, updateQueryOneGuest);
@@ -66,7 +66,7 @@ public class QueryGeneratorGuestTest {
         String fetchAllQueryOneProject = "SELECT * FROM TBL_USER";
 
         //Act
-        String result = QueryGeneratorUser.fetchQueryAllUser();
+        String result = QueryJdbcGeneratorUser.fetchQueryAllUser();
 
         //Assert
         assertEquals(result, fetchAllQueryOneProject);

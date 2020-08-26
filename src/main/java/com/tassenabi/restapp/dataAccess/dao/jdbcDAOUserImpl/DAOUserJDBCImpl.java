@@ -3,7 +3,7 @@ package com.tassenabi.restapp.dataAccess.dao.jdbcDAOUserImpl;
 import com.tassenabi.restapp.businessEntity.User;
 import com.tassenabi.restapp.businessEntity.jdbcUser.UserForJDBC;
 import com.tassenabi.restapp.dataAccess.dao.DAOEntity;
-import com.tassenabi.restapp.dataAccess.queryGenerator.QueryGeneratorUser;
+import com.tassenabi.restapp.dataAccess.queryGenerator.QueryJdbcGenerator.QueryJdbcGeneratorUser;
 import com.tassenabi.restapp.dataAccess.dataAccessConfigurations.dbConnection.IDBConnection;
 import com.tassenabi.restapp.dataAccess.dataAccessConfigurations.util.ApplicationLogger;
 import com.tassenabi.restapp.exceptions.NotInDataBaseException;
@@ -15,11 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static com.tassenabi.restapp.dataAccess.queryGenerator.QueryGeneratorUser.COLUMN1;
-import static com.tassenabi.restapp.dataAccess.queryGenerator.QueryGeneratorUser.COLUMN2;
+import static com.tassenabi.restapp.dataAccess.queryGenerator.QueryJdbcGenerator.QueryJdbcGeneratorUser.COLUMN1;
+import static com.tassenabi.restapp.dataAccess.queryGenerator.QueryJdbcGenerator.QueryJdbcGeneratorUser.COLUMN2;
 import static com.tassenabi.restapp.dataAccess.dataAccessConfigurations.util.ConverterStringForDataBase.*;
 
-public class DAOUserImpl implements DAOEntity {
+public class DAOUserJDBCImpl implements DAOEntity {
 
     private ArrayList<User> allUsers;
     private UserForJDBC user;
@@ -28,13 +28,13 @@ public class DAOUserImpl implements DAOEntity {
     private IDBConnection connection;
     private boolean isLoggerActivated;
 
-    public DAOUserImpl(){
+    public DAOUserJDBCImpl(){
 
     }
 
     //This constructor is for test database
     //TestDBConnection is the implementation for IDBConnection
-    public DAOUserImpl(IDBConnection connectToTestDatabase, boolean isLoggerActivated) {
+    public DAOUserJDBCImpl(IDBConnection connectToTestDatabase, boolean isLoggerActivated) {
 
         user = new UserForJDBC();
         allUsers = new ArrayList<>();
@@ -51,7 +51,7 @@ public class DAOUserImpl implements DAOEntity {
 
         try {
 
-            String queryCommand = QueryGeneratorUser.fetchQueryAllUser();
+            String queryCommand = QueryJdbcGeneratorUser.fetchQueryAllUser();
             queryStatement = createSQLStatement();
             queryResult = queryStatement.executeQuery(queryCommand);
 
@@ -94,7 +94,7 @@ public class DAOUserImpl implements DAOEntity {
         userName = formatUserNameForDatabase(userName);
 
         try {
-            String queryCommand = QueryGeneratorUser.fetchQueryOneUser(userName);
+            String queryCommand = QueryJdbcGeneratorUser.fetchQueryOneUser(userName);
             queryStatement = createSQLStatement();
             queryResult = queryStatement.executeQuery(queryCommand);
 
@@ -141,7 +141,7 @@ public class DAOUserImpl implements DAOEntity {
 
         try {
 
-            String queryCommand = QueryGeneratorUser.deleteQueryUser(userName);
+            String queryCommand = QueryJdbcGeneratorUser.deleteQueryUser(userName);
             queryStatement = createSQLStatement();
             queryStatement.executeUpdate(queryCommand);
 
@@ -175,7 +175,7 @@ public class DAOUserImpl implements DAOEntity {
 
         try {
 
-            String queryCommand = QueryGeneratorUser.updateUserQuery(oldUserName, newUserName);
+            String queryCommand = QueryJdbcGeneratorUser.updateUserQuery(oldUserName, newUserName);
             queryStatement = createSQLStatement();
             queryStatement.executeUpdate(queryCommand);
 
@@ -208,7 +208,7 @@ public class DAOUserImpl implements DAOEntity {
 
         try {
 
-            String queryCommand = QueryGeneratorUser.insertUserQuery(userName);
+            String queryCommand = QueryJdbcGeneratorUser.insertUserQuery(userName);
             queryStatement = createSQLStatement();
             queryStatement.executeUpdate(queryCommand);
 

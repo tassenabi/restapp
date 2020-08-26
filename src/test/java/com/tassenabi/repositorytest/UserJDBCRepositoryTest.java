@@ -2,7 +2,7 @@ package com.tassenabi.repositorytest;
 
 import com.tassenabi.restapp.businessEntity.User;
 import com.tassenabi.restapp.dataAccess.dao.DAOEntity;
-import com.tassenabi.restapp.dataAccess.dao.jdbcDAOUserImpl.DAOUserImpl;
+import com.tassenabi.restapp.dataAccess.dao.jdbcDAOUserImpl.DAOUserJDBCImpl;
 import com.tassenabi.restapp.dataAccess.dataAccessConfigurations.dbConnection.IDBConnection;
 import com.tassenabi.restapp.dataAccess.dataAccessConfigurations.dbConnection.TestDBConnection;
 import com.tassenabi.restapp.exceptions.NotInDataBaseException;
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertThat;
 public class UserJDBCRepositoryTest {
 
     IDBConnection dbConnection = new TestDBConnection();
-    DAOEntity daoUser = new DAOUserImpl(dbConnection, false);
+    DAOEntity daoUser = new DAOUserJDBCImpl(dbConnection, false);
     IRepository userRepo = new RepositoryUser(daoUser);
 
     private String userNameOne = "Monti";
