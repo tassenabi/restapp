@@ -8,7 +8,6 @@ import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnectionForTes
 import com.tassenabi.restapp.exceptions.UserNotInDataBaseException;
 import com.tassenabi.restapp.model.IRepositoryUser;
 import com.tassenabi.restapp.model.RepositoryUser;
-import org.ibex.nestedvm.Runtime;
 import org.junit.*;
 
 import java.util.List;
@@ -109,7 +108,7 @@ public class UserJDBCRepositoryTest {
 
     //TODO SQLite Exception not in maven package ... need to find
     @Ignore
-    @Test(expected = Runtime.CallException.class)
+    @Test
     //@Test(expected = org.sqlite.SQLiteErrorCode.SQLiteConstraintException.class)
     public void insertUser_IfUserAlreadyExistInDB_ShouldThrowException() {
 

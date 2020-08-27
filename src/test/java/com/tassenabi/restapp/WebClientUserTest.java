@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WebClientStockClientTest {
+class WebClientUserTest {
 
     /**
     private WebClient webClient = WebClient.builder().build();

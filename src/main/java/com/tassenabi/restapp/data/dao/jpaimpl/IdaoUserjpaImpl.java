@@ -3,7 +3,6 @@ package com.tassenabi.restapp.data.dao.jpaimpl;
 import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.entity.jpauser.UserForJpa;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
-import com.tassenabi.restapp.data.querygenerator.jpa.QueryJpaGeneratorUser;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public class IdaoUserjpaImpl implements IdaoEntity {
 
-    private static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("restfulApp");
+    private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("restfulApp");
 
     @Override
     public List<User> getAllUser() {
@@ -23,13 +22,7 @@ public class IdaoUserjpaImpl implements IdaoEntity {
 
     @Override
     public User getUser(String userName) {
-
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        Query nativeQuery
-                = em.createNativeQuery(QueryJpaGeneratorUser.fetchQueryOneUser(userName), UserForJpa.class);
-        nativeQuery.setParameter("userId",userName);
-
-        return (UserForJpa) nativeQuery.getSingleResult();
+        return null;
     }
 
     @Override
@@ -46,25 +39,32 @@ public class IdaoUserjpaImpl implements IdaoEntity {
     public void insertUser(String userName) {
 
         UserForJpa userForJpa;
-        EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-        EntityTransaction trans = null;
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = null;
         try{
-            trans.begin();
+            entityManager.getTransaction();
+            transaction.begin();
 
             userForJpa = new UserForJpa();
             userForJpa.setUserName(userName);
 
-            em.persist(userForJpa);
-            trans.commit();
+            entityManager.persist(userForJpa);
+            transaction.commit();
         }catch (Exception ex){
 
-            if(trans != null){
-                trans.rollback();
+            if(transaction != null){
+                transaction.rollback();
             }
             ex.printStackTrace();
         } finally {
-            em.close();
+            entityManager.close();
         }
+
+    }
+    public static void main(String[] args) {
+
+        IdaoUserjpaImpl n = new IdaoUserjpaImpl();
+        n.insertUser("Alanah");
 
     }
 }
