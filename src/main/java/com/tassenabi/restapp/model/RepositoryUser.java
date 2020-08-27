@@ -1,5 +1,8 @@
 package com.tassenabi.restapp.model;
 
+import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnectionForTesting;
+import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
+import com.tassenabi.restapp.data.dao.jdbcimpl.DaoUserJDBCImpl;
 import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
 import org.springframework.data.repository.support.Repositories;
@@ -43,11 +46,5 @@ public class RepositoryUser implements IRepositoryUser {
     public Optional<User> getUser(User user) {
         return Optional.empty();
     }
-
-public static void main(String[] args) {
-        User user = new User("Richard");
-
-        RepositoryUser rep = new RepositoryUser();
-}
 
 }

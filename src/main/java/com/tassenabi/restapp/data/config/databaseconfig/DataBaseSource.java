@@ -27,7 +27,7 @@ public class DataBaseSource {
     }
 
     public static String getTestDataBaseLink(){
-
+        System.out.println(databaseDriverName + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName);
         return databaseDriverName + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName;
     }
 

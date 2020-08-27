@@ -10,11 +10,6 @@ import java.util.Optional;
 
 public interface IdaoEntity<T> {
 
-    /**
-     *
-
-
-    **/
     void insert(T t);
     List<T> getAll();
     void deleteUser(T t);
