@@ -2,8 +2,10 @@ package com.tassenabi.restapp.model;
 
 import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
+import org.springframework.data.repository.support.Repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RepositoryUser implements IRepositoryUser {
 
@@ -16,29 +18,36 @@ public class RepositoryUser implements IRepositoryUser {
         this.daoUser = daoUser;
     }
 
-    public User getUser(String name){
+    @Override
+    public void updateUser(User oldUser, User newUser) {
 
-        return daoUser.getUser(name);
+        daoUser.update(oldUser, newUser);
     }
 
     @Override
-    public void updateUser(String oldUserName, String newUserName) {
-
-        daoUser.updateUser(oldUserName, newUserName);
+    public void deleteUser(User user) {
+        daoUser.deleteUser(user);
     }
 
     @Override
-    public void deleteUser(String userName) {
-        daoUser.deleteUser(userName);
-    }
-
-    @Override
-    public void insertUser(String userName) {
-        daoUser.insertUser(userName);
+    public void insertUser(User user) {
+        daoUser.insert(user);
     }
 
     public List<User> getAllUser(){
 
-        return daoUser.getAllUser();
+        return daoUser.getAll();
     }
+
+    @Override
+    public Optional<User> getUser(User user) {
+        return Optional.empty();
+    }
+
+public static void main(String[] args) {
+        User user = new User("Richard");
+
+        RepositoryUser rep = new RepositoryUser();
+}
+
 }
