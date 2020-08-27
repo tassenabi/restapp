@@ -1,4 +1,4 @@
-package com.tassenabi.restapp.entity.hibernateuser;
+package com.tassenabi.restapp.entity.jpauser;
 
 import com.tassenabi.restapp.data.querygenerator.QueryGeneratorUser;
 import com.tassenabi.restapp.entity.User;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 //TODO Lombok Project Refactoring
 @Entity
 @Table(name=QueryGeneratorUser.TABLENAME)
-public class UserForHibernate extends User implements Serializable {
+public class UserForJpa extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

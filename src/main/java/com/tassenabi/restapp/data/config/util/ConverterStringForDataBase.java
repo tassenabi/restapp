@@ -8,18 +8,20 @@ public class ConverterStringForDataBase {
         throw new IllegalStateException("Utility class");
     }
 
-    public static String formatUserNameForDatabase(String name){
+    public static String formatUserNameForDatabase(String userName){
 
         //Because every string should start with a Capital, Rest lowerCases and not should not include spaces
-        name = name.trim();
-        int countLettersName = name.length();
-        String firstLetter = name.substring(0,1).toUpperCase();
-        String lastLetters = name.substring(1,countLettersName).toLowerCase();
+        userName = userName.trim();
+        int countLettersName = userName.length();
+        String firstLetter = userName.substring(0,1).toUpperCase();
 
-        name = firstLetter + lastLetters;
-        name = name.trim();
+        String lastLetters = userName.substring(1,countLettersName).toLowerCase();
 
-    return name;
+
+        userName = firstLetter + lastLetters;
+        userName = userName.trim();
+
+    return userName;
 
     }
 }

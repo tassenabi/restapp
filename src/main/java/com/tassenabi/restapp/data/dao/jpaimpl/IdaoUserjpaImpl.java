@@ -1,9 +1,9 @@
-package com.tassenabi.restapp.data.dao.hibernateimpl;
+package com.tassenabi.restapp.data.dao.jpaimpl;
 
 import com.tassenabi.restapp.entity.User;
-import com.tassenabi.restapp.entity.hibernateuser.UserForHibernate;
+import com.tassenabi.restapp.entity.jpauser.UserForJpa;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
-import com.tassenabi.restapp.data.querygenerator.hibernate.QueryHibernateGeneratorUser;
+import com.tassenabi.restapp.data.querygenerator.jpa.QueryJpaGeneratorUser;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * DAO for the Hibernate/JPA Database Fetch // CRUD-Methods
  */
-public class IdaoUserHibernateImpl implements IdaoEntity {
+public class IdaoUserjpaImpl implements IdaoEntity {
 
     private static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("restfulApp");
 
@@ -26,10 +26,10 @@ public class IdaoUserHibernateImpl implements IdaoEntity {
 
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         Query nativeQuery
-                = em.createNativeQuery(QueryHibernateGeneratorUser.fetchQueryOneUser(userName), UserForHibernate.class);
+                = em.createNativeQuery(QueryJpaGeneratorUser.fetchQueryOneUser(userName), UserForJpa.class);
         nativeQuery.setParameter("userId",userName);
 
-        return (UserForHibernate) nativeQuery.getSingleResult();
+        return (UserForJpa) nativeQuery.getSingleResult();
     }
 
     @Override
@@ -45,16 +45,16 @@ public class IdaoUserHibernateImpl implements IdaoEntity {
     @Override
     public void insertUser(String userName) {
 
-        UserForHibernate userForHibernate;
+        UserForJpa userForJpa;
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
         EntityTransaction trans = null;
         try{
             trans.begin();
 
-            userForHibernate = new UserForHibernate();
-            userForHibernate.setUserName(userName);
+            userForJpa = new UserForJpa();
+            userForJpa.setUserName(userName);
 
-            em.persist(userForHibernate);
+            em.persist(userForJpa);
             trans.commit();
         }catch (Exception ex){
 

@@ -8,11 +8,11 @@ import java.util.Properties;
 
 public class DataBaseSource {
 
-    private static String DATABASEDRIVERNAME;
-    private static File DATABASEPATH;
-    private static String DATABASENAME;
-    private static File TESTDATABASEPATH;
-    private static String TESTDATABASENAME;
+    private static String databaseDriverName;
+    private static File databasePath;
+    private static String databaseName;
+    private static File testDatabasePath;
+    private static String testDatabaseName;
 
     //Private Constructor because this is a utility class
     private DataBaseSource(){
@@ -23,28 +23,28 @@ public class DataBaseSource {
 
         concatDatabaseConnectionString();
 
-        return DATABASEDRIVERNAME + DATABASEPATH.getAbsolutePath()+ "/" + DATABASENAME;
+        return databaseDriverName + databasePath.getAbsolutePath()+ "/" + databaseName;
     }
 
     public static String getTestDataBaseLink(){
 
-        return DATABASEDRIVERNAME + TESTDATABASEPATH.getAbsolutePath()+ "/" + TESTDATABASENAME;
+        return databaseDriverName + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName;
     }
 
     public static void getInfoSourceLinkDataBase(){
         JOptionPane.showMessageDialog(null,"The database of this application is : " +
-                "located here: " + DATABASEPATH.getAbsolutePath()+ "/" + DATABASENAME);
+                "located here: " + databasePath.getAbsolutePath()+ "/" + databaseName);
     }
 
     public static void getInfoSourceLinkDTestataBase(){
         JOptionPane.showMessageDialog(null,"The database of this application is : " +
-                "located here: " + TESTDATABASEPATH.getAbsolutePath()+ "/" + TESTDATABASENAME);
+                "located here: " + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName);
     }
 
     private static void concatDatabaseConnectionString()  {
 
         String absPath = new File("").getAbsolutePath();
-        String appConfigPath = absPath + "//src//main//java//com//tassenabi//restapp//data//dataAccessConfigurations//dbConfig//dbConfig.properties";
+        String appConfigPath = absPath + "//src//main//java//com//tassenabi//restapp//data//config//databaseconfig//dbConfig.properties";
 
         Properties appProps = new Properties();
 
@@ -54,13 +54,13 @@ public class DataBaseSource {
             e.printStackTrace();
         }
 
-        DATABASEDRIVERNAME = appProps.getProperty("DATABASEDRIVERNAME");
+        databaseDriverName = appProps.getProperty("DATABASEDRIVERNAME");
 
-        DATABASEPATH = new File(appProps.getProperty("DATABASEPATH"));
-        DATABASENAME = appProps.getProperty("DATABASENAME");
+        databasePath = new File(appProps.getProperty("DATABASEPATH"));
+        databaseName = appProps.getProperty("DATABASENAME");
 
-        TESTDATABASEPATH = new File(appProps.getProperty("TESTDATABASEPATH"));
-        TESTDATABASENAME = appProps.getProperty("TESTDATABASENAME");
+        testDatabasePath = new File(appProps.getProperty("TESTDATABASEPATH"));
+        testDatabaseName = appProps.getProperty("TESTDATABASENAME");
 
     }
 }

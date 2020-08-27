@@ -1,8 +1,8 @@
-package com.tassenabi.restapp.data.querygenerator.hibernate;
+package com.tassenabi.restapp.data.querygenerator.jpa;
 
 import com.tassenabi.restapp.data.querygenerator.QueryGeneratorUser;
 
-public class QueryHibernateGeneratorUser extends QueryGeneratorUser {
+public class QueryJpaGeneratorUser extends QueryGeneratorUser {
 
         public static String fetchQueryOneUser(String userName) {
 

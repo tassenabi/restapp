@@ -240,7 +240,7 @@ public class IdaoUserJDBCImpl implements IdaoEntity {
     }
 
     //TODO Refactoring this methods belongs in a seperate class (SRP)
-    private Connection openConnection() throws SQLException {
+    private Connection openConnection()  {
 
         return connection.getDatabaseConnection();
 
