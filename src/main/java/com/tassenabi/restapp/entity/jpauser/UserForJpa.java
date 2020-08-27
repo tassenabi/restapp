@@ -12,13 +12,16 @@ import java.io.Serializable;
 
 //TODO Lombok Project Refactoring
 @Entity
+@TableGenerator(name="sqlite", table="sqlite_sequence",
+        pkColumnName="name", valueColumnName="seq",
+        pkColumnValue="sqliteTestTable")
 @Table(name=QueryGeneratorUser.TABLENAME)
 public class UserForJpa extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = QueryGeneratorUser.COLUMN1, unique = true)
     private int id;
 

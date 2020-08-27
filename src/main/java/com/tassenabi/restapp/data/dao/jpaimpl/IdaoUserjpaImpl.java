@@ -42,7 +42,7 @@ public class IdaoUserjpaImpl implements IdaoEntity {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = null;
         try{
-            entityManager.getTransaction();
+            transaction = entityManager.getTransaction();
             transaction.begin();
 
             userForJpa = new UserForJpa();
