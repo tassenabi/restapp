@@ -1,16 +1,17 @@
 package com.tassenabi.restapp.model;
 
-import com.tassenabi.restapp.businessEntity.User;
-import com.tassenabi.restapp.dataAccess.dao.DAOEntity;
+import com.tassenabi.restapp.entity.User;
+import com.tassenabi.restapp.data.dao.IdaoEntity;
 
 import java.util.List;
 
-public class RepositoryUser implements IRepository{
+public class RepositoryUser implements IRepositoryUser {
 
-    //TODO Dependency Injection Container benutzen
-    private DAOEntity daoUser;
+    //TODO Dependency Injection Container für Java finden, analaog Ninject C#
+    //Repository soll so nichts von dem DAO wissen
+    private IdaoEntity daoUser;
 
-    public RepositoryUser(DAOEntity daoUser){
+    public RepositoryUser(IdaoEntity daoUser){
 
         this.daoUser = daoUser;
     }

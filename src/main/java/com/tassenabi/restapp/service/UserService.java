@@ -1,15 +1,15 @@
 package com.tassenabi.restapp.service;
 
-import com.tassenabi.restapp.businessEntity.User;
-import com.tassenabi.restapp.model.IRepository;
+import com.tassenabi.restapp.entity.User;
+import com.tassenabi.restapp.model.IRepositoryUser;
 
 import java.util.List;
 
 public class UserService {
 
-    private IRepository userRepository;
+    private IRepositoryUser userRepository;
 
-    public UserService(IRepository userRepository){
+    public UserService(IRepositoryUser userRepository){
         this.userRepository = userRepository;
     }
 
