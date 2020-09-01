@@ -5,39 +5,19 @@ import com.tassenabi.restapp.entity.jpauser.UserForJpa;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
 
 import javax.persistence.*;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * DAO for the Hibernate/JPA Database Fetch // CRUD-Methods
  */
-public class IdaoUserjpaImpl implements IdaoEntity {
+public class DaoUserJpaImpl implements IdaoEntity<User> {
 
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("restfulApp");
 
-    @Override
-    public List<User> getAllUser() {
-        return new ArrayList<User>();
-    }
 
     @Override
-    public User getUser(String userName) {
-        return null;
-    }
-
-    @Override
-    public void deleteUser(String userName) {
-
-    }
-
-    @Override
-    public void updateUser(String oldUserName, String newUserName) {
-
-    }
-
-    @Override
-    public void insertUser(String userName) {
+    public void insert(User userName) {
 
         UserForJpa userForJpa;
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -47,11 +27,10 @@ public class IdaoUserjpaImpl implements IdaoEntity {
             transaction.begin();
 
             userForJpa = new UserForJpa();
-            userForJpa.setUserName(userName);
+            userForJpa.setUserName(userName.getUserName());
 
             entityManager.persist(userForJpa);
             transaction.commit();
-
         }catch (Exception ex){
 
             if(transaction != null){
@@ -63,9 +42,24 @@ public class IdaoUserjpaImpl implements IdaoEntity {
         }
 
     }
-    public static void main(String[] args) {
 
-        IdaoUserjpaImpl n = new IdaoUserjpaImpl();
-        n.insertUser("Alanah4");
+    @Override
+    public List<User> getAll() {
+        return null;
+    }
+
+    @Override
+    public void deleteUser(User user) {
+
+    }
+
+    @Override
+    public void update(User user, User r) {
+
+    }
+
+    @Override
+    public Optional<User> get(User user) {
+        return (Optional<User>) Optional.ofNullable(user);
     }
 }

@@ -3,22 +3,27 @@ package com.tassenabi.restapp.entity;
 public class User {
 
     //TODO Lombok Project Refactoring als @data Klasse
-    private int primaryKey;
+    private int id;
     private String userName;
 
     public User(){
 
     }
 
-    public User(int primaryKey, String userName){
+    public User(String userName){
+        setUserName(userName);
 
-        this.primaryKey = primaryKey;
+    }
+
+    public User(int id, String userName){
+
+        this.id = id;
         this.userName = userName;
 
     }
 
     public int getId() {
-        return this.primaryKey;
+        return this.id;
     }
 
     public String getUserName() {
@@ -30,6 +35,6 @@ public class User {
     }
 
     public void setId(int id) {
-        this.primaryKey = id;
+        this.id = id;
     }
 }

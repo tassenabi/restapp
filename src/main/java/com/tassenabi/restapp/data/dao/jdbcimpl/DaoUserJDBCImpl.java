@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 
 import static com.tassenabi.restapp.data.querygenerator.jdbc.QueryJdbcGeneratorUser.COLUMN1;
 import static com.tassenabi.restapp.data.querygenerator.jdbc.QueryJdbcGeneratorUser.COLUMN2;
@@ -23,7 +24,7 @@ import static com.tassenabi.restapp.data.config.util.ConverterStringForDataBase.
  * DAO for the JDCB Database Fetch // CRUD-Methods
  */
 
-public class IdaoUserJDBCImpl implements IdaoEntity {
+public class DaoUserJDBCImpl implements IdaoEntity<User> {
 
     private ArrayList<User> allUsers;
     private UserForJDBC user;
@@ -33,16 +34,16 @@ public class IdaoUserJDBCImpl implements IdaoEntity {
     private boolean isLoggerActivated;
 
     //TODO Refactoring private Constructor
-    public IdaoUserJDBCImpl(){
+    public DaoUserJDBCImpl(){
 
     }
 
     //This constructor is for test database
     //TestDBConnection is the implementation for IDBConnection
-    public IdaoUserJDBCImpl(IDatabaseJdbcConnection connectToTestDatabase, boolean isLoggerActivated) {
+    public DaoUserJDBCImpl(IDatabaseJdbcConnection connectToTestDatabase, boolean isLoggerActivated) {
 
         user = new UserForJDBC();
-        allUsers = new ArrayList<>();
+        allUsers = new ArrayList<User>();
         this.connection = connectToTestDatabase;
         this.isLoggerActivated = isLoggerActivated;
 
@@ -50,7 +51,7 @@ public class IdaoUserJDBCImpl implements IdaoEntity {
 
     //TODO Refactoring try-with-resources
     @Override
-    public List<User> getAllUser() {
+    public List<User> getAll() {
 
         allUsers.clear();
 
@@ -94,9 +95,112 @@ public class IdaoUserJDBCImpl implements IdaoEntity {
 
     //TODO Refactoring try-with-resources
     @Override
-    public UserForJDBC getUser(String userName) {
+    public void insert(User User){
         //Set firstLetter to upperCase and set last to lowerLetters
-        userName = formatUserNameForDatabase(userName);
+        String userName = formatUserNameForDatabase(User.getUserName());
+
+        try {
+
+            String queryCommand = QueryJdbcGeneratorUser.insertUserQuery(userName);
+            queryStatement = createSQLStatement();
+            queryStatement.executeUpdate(queryCommand);
+
+            //Log the query
+            if (isLoggerActivated) {
+                ApplicationLogger.loggingQueries(queryCommand);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        try {
+
+            queryStatement.close();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+    }
+
+    //TODO Refactoring try-with-resources
+    @Override
+    public void deleteUser(User user) {
+
+        //Set firstLetter to upperCase and set last to lowerLetters
+        String userName = formatUserNameForDatabase(user.getUserName());
+
+        try {
+
+            String queryCommand = QueryJdbcGeneratorUser.deleteQueryUser(userName);
+            queryStatement = createSQLStatement();
+            queryStatement.executeUpdate(queryCommand);
+
+            //Log the query
+            if (isLoggerActivated) {
+                ApplicationLogger.loggingQueries(queryCommand);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        try {
+
+            queryStatement.close();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    //TODO Refactoring try-with-resources
+    @Override
+    public void update(User oldUser, User newUser) {
+
+        //Set firstLetter to upperCase and set last to lowerLetters
+        String oldUserName = formatUserNameForDatabase(oldUser.getUserName());
+
+        try {
+
+            String queryCommand = QueryJdbcGeneratorUser.updateUserQuery(oldUser.getUserName(), newUser.getUserName());
+            queryStatement = createSQLStatement();
+            queryStatement.executeUpdate(queryCommand);
+
+            //Log the query
+            if (isLoggerActivated) {
+                ApplicationLogger.loggingQueries(queryCommand);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
+
+        try {
+
+            queryStatement.close();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
+
+    //TODO Refactoring try-with-resources
+    @Override
+    public Optional<User> get(User user) {
+        //Set firstLetter to upperCase and set last to lowerLetters
+        String userName = formatUserNameForDatabase(user.getUserName());
 
         try {
             String queryCommand = QueryJdbcGeneratorUser.fetchQueryOneUser(userName);
@@ -134,110 +238,9 @@ public class IdaoUserJDBCImpl implements IdaoEntity {
 
         }
 
-        return user;
+        return Optional.of(user);
     }
 
-    //TODO Refactoring try-with-resources
-    @Override
-    public void deleteUser(String userName) {
-
-        //Set firstLetter to upperCase and set last to lowerLetters
-        userName = formatUserNameForDatabase(userName);
-
-        try {
-
-            String queryCommand = QueryJdbcGeneratorUser.deleteQueryUser(userName);
-            queryStatement = createSQLStatement();
-            queryStatement.executeUpdate(queryCommand);
-
-            //Log the query
-            if (isLoggerActivated) {
-                ApplicationLogger.loggingQueries(queryCommand);
-            }
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-        }
-
-        try {
-
-            queryStatement.close();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-    }
-
-    //TODO Refactoring try-with-resources
-    @Override
-    public void updateUser(String oldUserName, String newUserName) {
-
-        //Set firstLetter to upperCase and set last to lowerLetters
-        oldUserName = formatUserNameForDatabase(oldUserName);
-
-        try {
-
-            String queryCommand = QueryJdbcGeneratorUser.updateUserQuery(oldUserName, newUserName);
-            queryStatement = createSQLStatement();
-            queryStatement.executeUpdate(queryCommand);
-
-            //Log the query
-            if (isLoggerActivated) {
-                ApplicationLogger.loggingQueries(queryCommand);
-            }
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-        }
-
-        try {
-
-            queryStatement.close();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-    }
-
-    //TODO Refactoring try-with-resources
-    @Override
-    public void insertUser(String userName){
-        //Set firstLetter to upperCase and set last to lowerLetters
-        userName = formatUserNameForDatabase(userName);
-
-        try {
-
-            String queryCommand = QueryJdbcGeneratorUser.insertUserQuery(userName);
-            queryStatement = createSQLStatement();
-            queryStatement.executeUpdate(queryCommand);
-
-            //Log the query
-            if (isLoggerActivated) {
-                ApplicationLogger.loggingQueries(queryCommand);
-            }
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-        }
-
-        try {
-
-            queryStatement.close();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-        }
-    }
 
     //TODO Refactoring this methods belongs in a seperate class (SRP)
     private Connection openConnection()  {
@@ -258,4 +261,5 @@ public class IdaoUserJDBCImpl implements IdaoEntity {
         user.setId(id);
         user.setUserName(userName);
     }
+
 }

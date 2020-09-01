@@ -1,8 +1,9 @@
 package com.tassenabi.repositoryIntegrationtest;
 
+import com.tassenabi.restapp.data.dao.jpaimpl.DaoUserJpaImpl;
 import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
-import com.tassenabi.restapp.data.dao.jpaimpl.IdaoUserjpaImpl;
+import com.tassenabi.restapp.data.dao.jpaimpl.DaoUserJpaImpl;
 import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
 import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnectionForTesting;
 import com.tassenabi.restapp.model.IRepositoryUser;
@@ -15,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class UserJpaRepositoryTest {
 
     IDatabaseJdbcConnection dbConnection = new DatabaseJdbcConnectionForTesting();
-    IdaoEntity daoUser = new IdaoUserjpaImpl();
+    IdaoEntity daoUser = new DaoUserJpaImpl();
     IRepositoryUser userRepo = new RepositoryUser(daoUser);
 
     private String userOne = "Monti";
@@ -46,7 +47,7 @@ public class UserJpaRepositoryTest {
     @Test
     public void fetchOneUser_ShouldReturnCorrectUserName() {
 
-        userRepo.insertUser("Mooo34o");
+        //userRepo.insertUser();
         //Arrange Act
         //String expectedUserName = "Monti";
         //User actualUser = userRepo.getUser(userOne);

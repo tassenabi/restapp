@@ -4,6 +4,7 @@ import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.model.IRepositoryUser;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
 
@@ -17,19 +18,19 @@ public class UserService {
         return userRepository.getAllUser();
     }
 
-    public User getUser(String name){
-        return userRepository.getUser(name);
+    public Optional<User> getUser(User user){
+        return userRepository.getUser(user);
     }
 
-    public void deleteUser(String userName){
-        userRepository.deleteUser(userName);
+    public void deleteUser(User user){
+        userRepository.deleteUser(user);
     }
 
-    public void updateUser(String oldUserName, String newUserName){
-        userRepository.updateUser(oldUserName, newUserName);
+    public void updateUser(User oldUser, User newUser){
+        userRepository.updateUser(oldUser, newUser);
     }
 
-    public void insertUser(String userName){
-        userRepository.insertUser(userName);
+    public void insertUser(User user){
+        userRepository.insertUser(user);
     }
 }
