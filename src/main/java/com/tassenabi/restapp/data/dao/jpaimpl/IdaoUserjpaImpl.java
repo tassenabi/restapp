@@ -5,6 +5,7 @@ import com.tassenabi.restapp.entity.jpauser.UserForJpa;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
 
 import javax.persistence.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class IdaoUserjpaImpl implements IdaoEntity {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = null;
         try{
-            entityManager.getTransaction();
+            transaction = entityManager.getTransaction();
             transaction.begin();
 
             userForJpa = new UserForJpa();
@@ -50,6 +51,7 @@ public class IdaoUserjpaImpl implements IdaoEntity {
 
             entityManager.persist(userForJpa);
             transaction.commit();
+
         }catch (Exception ex){
 
             if(transaction != null){
@@ -64,7 +66,6 @@ public class IdaoUserjpaImpl implements IdaoEntity {
     public static void main(String[] args) {
 
         IdaoUserjpaImpl n = new IdaoUserjpaImpl();
-        n.insertUser("Alanah");
-
+        n.insertUser("Alanah4");
     }
 }

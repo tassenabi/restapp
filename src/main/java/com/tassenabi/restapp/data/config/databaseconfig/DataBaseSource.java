@@ -19,6 +19,19 @@ public class DataBaseSource {
         throw new IllegalStateException("DataBaseSource.class is a utility class and should not be an instance");
     }
 
+    public static String getDataBaseName(){
+
+        concatDatabaseConnectionString();
+
+        return databaseName;
+    }
+
+    public static String getTestDatabaseName(){
+
+        concatDatabaseConnectionString();
+
+        return testDatabaseName;
+    }
     public static String getDataBaseLink(){
 
         concatDatabaseConnectionString();
@@ -27,6 +40,8 @@ public class DataBaseSource {
     }
 
     public static String getTestDataBaseLink(){
+
+        concatDatabaseConnectionString();
 
         return databaseDriverName + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName;
     }
