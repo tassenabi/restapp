@@ -40,13 +40,9 @@ public class DataBaseSource {
     }
 
     public static String getTestDataBaseLink(){
-<<<<<<< HEAD
-        System.out.println(databaseDriverName + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName);
-=======
 
         concatDatabaseConnectionString();
 
->>>>>>> beforeRefactoringDAOUser
         return databaseDriverName + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName;
     }
 

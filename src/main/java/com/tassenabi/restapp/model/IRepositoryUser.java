@@ -15,8 +15,4 @@ public interface IRepositoryUser {
     void updateUser(User oldUser, User newUser);
     void deleteUser(User user);
     void insertUser(User user);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> beforeRefactoringDAOUser
