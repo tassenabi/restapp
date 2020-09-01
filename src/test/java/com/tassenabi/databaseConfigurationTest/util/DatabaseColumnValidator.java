@@ -1,7 +1,7 @@
 package com.tassenabi.databaseConfigurationTest.util;
 
 import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
-import com.tassenabi.restapp.data.config.jdbcconfig.databaseJDBCConnection;
+import com.tassenabi.restapp.data.config.jdbcconfig.DataBaseJDBCConnection;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -14,7 +14,7 @@ public class DatabaseColumnValidator implements IDatabaseColumnValidator {
 
     private Statement statement;
     private boolean tblColumnTitleOrderValidate = false;
-    private IDatabaseJdbcConnection connection = new databaseJDBCConnection();
+    private IDatabaseJdbcConnection connection = new DataBaseJDBCConnection();
 
 
     public DatabaseColumnValidator() throws SQLException {

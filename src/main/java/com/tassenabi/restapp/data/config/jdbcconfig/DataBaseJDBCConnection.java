@@ -5,7 +5,7 @@ import com.tassenabi.restapp.data.config.databaseconfig.DataBaseSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class databaseJDBCConnection implements IDatabaseJdbcConnection {
+public class DataBaseJDBCConnection implements IDatabaseJdbcConnection {
 
     private String databaseSourcePath = DataBaseSource.getDataBaseLink();
 

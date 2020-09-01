@@ -60,6 +60,7 @@ public class DaoUserJpaImpl implements IdaoEntity<User> {
 
     @Override
     public Optional<User> get(User user) {
-        return (Optional<User>) Optional.ofNullable(user);
+
+        return Optional.ofNullable(user);
     }
 }

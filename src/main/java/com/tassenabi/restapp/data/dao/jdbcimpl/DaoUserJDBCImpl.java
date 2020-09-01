@@ -43,7 +43,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     public DaoUserJDBCImpl(IDatabaseJdbcConnection connectToTestDatabase, boolean isLoggerActivated) {
 
         user = new UserForJDBC();
-        allUsers = new ArrayList<User>();
+        allUsers = new ArrayList<>();
         this.connection = connectToTestDatabase;
         this.isLoggerActivated = isLoggerActivated;
 
@@ -95,9 +95,9 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
 
     //TODO Refactoring try-with-resources
     @Override
-    public void insert(User User){
+    public void insert(User user){
         //Set firstLetter to upperCase and set last to lowerLetters
-        String userName = formatUserNameForDatabase(User.getUserName());
+        String userName = formatUserNameForDatabase(user.getUserName());
 
         try {
 
@@ -166,11 +166,11 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     public void update(User oldUser, User newUser) {
 
         //Set firstLetter to upperCase and set last to lowerLetters
-        String oldUserName = formatUserNameForDatabase(oldUser.getUserName());
+        String previousUserName = formatUserNameForDatabase(oldUser.getUserName());
 
         try {
 
-            String queryCommand = QueryJdbcGeneratorUser.updateUserQuery(oldUser.getUserName(), newUser.getUserName());
+            String queryCommand = QueryJdbcGeneratorUser.updateUserQuery(previousUserName, newUser.getUserName());
             queryStatement = createSQLStatement();
             queryStatement.executeUpdate(queryCommand);
 

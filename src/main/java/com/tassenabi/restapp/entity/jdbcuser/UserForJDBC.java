@@ -26,14 +26,17 @@ public class UserForJDBC extends User {
         return this.id;
     }
 
+    @Override
     public String getUserName() {
         return this.userName;
     }
 
+    @Override
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }

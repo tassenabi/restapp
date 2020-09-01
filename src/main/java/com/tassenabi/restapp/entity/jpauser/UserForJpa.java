@@ -1,6 +1,5 @@
 package com.tassenabi.restapp.entity.jpauser;
 
-import com.tassenabi.restapp.data.config.databaseconfig.DataBaseSource;
 import com.tassenabi.restapp.data.querygenerator.QueryGeneratorUser;
 import com.tassenabi.restapp.entity.User;
 

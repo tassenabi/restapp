@@ -1,6 +1,6 @@
 package com.tassenabi.databaseConfigurationTest;
 
-import com.tassenabi.restapp.data.config.jdbcconfig.databaseJDBCConnection;
+import com.tassenabi.restapp.data.config.jdbcconfig.DataBaseJDBCConnection;
 import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
 import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnectionForTesting;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class DatabaseConnectionTest {
     public void getConnection_ShouldBeNotNull() {
 
         //Arrange
-        IDatabaseJdbcConnection connection = new databaseJDBCConnection();
+        IDatabaseJdbcConnection connection = new DataBaseJDBCConnection();
 
         //Act
         Connection con = connection.getDatabaseConnection();
@@ -32,7 +32,7 @@ public class DatabaseConnectionTest {
     public void getConnection_ShouldBeReturnProductiveDatabase() throws SQLException {
 
         //Arrange
-        IDatabaseJdbcConnection connection = new databaseJDBCConnection();
+        IDatabaseJdbcConnection connection = new DataBaseJDBCConnection();
 
         //Act
         Connection con = connection.getDatabaseConnection();
