@@ -11,7 +11,7 @@ public class DatabaseJdbcConnectionForTesting implements IDatabaseJdbcConnection
 
     public Connection getDatabaseConnection() {
 
-        return new databaseJDBCConnectionFactory().createDatabaseConnection(databaseSourcePath);
+        return new DatabaseJDBCConnectionFactory().createDatabaseConnection(databaseSourcePath);
     }
 
     public  void closeDatabaseConnection() {

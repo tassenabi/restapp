@@ -10,9 +10,9 @@ public class RepositoryUser implements IRepositoryUser {
 
     //TODO Dependency Injection Container für Java finden, analaog Ninject C#
     //Repository soll so nichts von dem DAO wissen
-    private IdaoEntity daoUser;
+    private IdaoEntity<User> daoUser;
 
-    public RepositoryUser(IdaoEntity daoUser){
+    public RepositoryUser(IdaoEntity<User> daoUser){
 
         this.daoUser = daoUser;
     }

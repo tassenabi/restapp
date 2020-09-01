@@ -13,10 +13,6 @@ import java.sql.Statement;
 
 public class ResetTestDataBase {
 
-    private static Statement statement;
-    private static StringBuffer queryDDLCommands;
-    private static IDatabaseJdbcConnection connection;
-
     private ResetTestDataBase() {
 
         throw new IllegalStateException("Instance of this Utilty Classes (ResetTestDataBase.class) are not allowed");
@@ -25,8 +21,8 @@ public class ResetTestDataBase {
 
     public static void executeDDLScript() throws IOException, SQLException {
 
-        queryDDLCommands = new StringBuffer();
-        connection = new DatabaseJdbcConnectionForTesting();
+        StringBuffer queryDDLCommands = new StringBuffer();
+        IDatabaseJdbcConnection connection = new DatabaseJdbcConnectionForTesting();
 
         File createScript = new File(getDDLScriptFilePath());
 
@@ -40,7 +36,7 @@ public class ResetTestDataBase {
             ex.printStackTrace();
         }
 
-        statement = connection.getDatabaseConnection().createStatement();
+        Statement statement = connection.getDatabaseConnection().createStatement();
         statement.executeUpdate(String.valueOf(queryDDLCommands));
         statement.close();
         connection.closeDatabaseConnection();

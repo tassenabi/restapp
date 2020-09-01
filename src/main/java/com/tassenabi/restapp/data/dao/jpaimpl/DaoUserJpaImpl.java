@@ -46,7 +46,7 @@ public class DaoUserJpaImpl implements IdaoEntity<User> {
 
     @Override
     public List<User> getAll() {
-        return new ArrayList<User>();
+        return new ArrayList<>();
     }
 
     @Override

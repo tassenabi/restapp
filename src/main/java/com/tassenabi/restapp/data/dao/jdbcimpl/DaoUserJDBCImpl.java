@@ -33,7 +33,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     private IDatabaseJdbcConnection connection;
     private boolean isLoggerActivated;
 
-    //TODO Refactoring private Constructor
     private DaoUserJDBCImpl(){
 
     }
@@ -49,7 +48,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
 
     }
 
-    //TODO Refactoring try-with-resources
     @Override
     public List<User> getAll() {
 
@@ -93,7 +91,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         return allUsers;
     }
 
-    //TODO Refactoring try-with-resources
     @Override
     public void insert(User user){
         //Set firstLetter to upperCase and set last to lowerLetters
@@ -127,7 +124,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         }
     }
 
-    //TODO Refactoring try-with-resources
     @Override
     public void deleteUser(User user) {
 
@@ -161,7 +157,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         }
     }
 
-    //TODO Refactoring try-with-resources
     @Override
     public void update(User oldUser, User newUser) {
 
@@ -195,8 +190,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         }
     }
 
-
-    //TODO Refactoring try-with-resources
     @Override
     public Optional<User> get(User user) {
         //Set firstLetter to upperCase and set last to lowerLetters
