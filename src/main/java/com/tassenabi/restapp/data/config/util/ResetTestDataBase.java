@@ -30,9 +30,7 @@ public class ResetTestDataBase {
 
         File createScript = new File(getDDLScriptFilePath());
 
-        BufferedReader reader = new BufferedReader(new FileReader(createScript));
-
-        try {
+        try (BufferedReader reader = new BufferedReader(new FileReader(createScript))) {
             String line = null;
             while ((line = reader.readLine()) != null) {
                 queryDDLCommands.append(line);
@@ -40,9 +38,6 @@ public class ResetTestDataBase {
 
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally
-        {
-            reader.close();
         }
 
         statement = connection.getDatabaseConnection().createStatement();

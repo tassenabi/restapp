@@ -34,7 +34,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     private boolean isLoggerActivated;
 
     //TODO Refactoring private Constructor
-    public DaoUserJDBCImpl(){
+    private DaoUserJDBCImpl(){
 
     }
 

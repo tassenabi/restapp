@@ -18,7 +18,7 @@ public class databaseJDBCConnectionFactory {
             //The createStatement just send this information; therefore not an QueryStatement
             databaseConnection.createStatement().execute("PRAGMA foreign_keys = ON");
 
-        } catch (SQLException|ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
 
         }

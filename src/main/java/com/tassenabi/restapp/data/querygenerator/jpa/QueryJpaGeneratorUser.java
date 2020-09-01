@@ -4,6 +4,10 @@ import com.tassenabi.restapp.data.querygenerator.QueryGeneratorUser;
 
 public class QueryJpaGeneratorUser extends QueryGeneratorUser {
 
+    private QueryJpaGeneratorUser(){
+
+    }
+
         public static String fetchQueryOneUser(String userName) {
 
             return "SELECT * FROM users WHERE userName=:userId";

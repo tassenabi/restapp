@@ -4,6 +4,10 @@ import com.tassenabi.restapp.data.querygenerator.QueryGeneratorUser;
 
 public class QueryJdbcGeneratorUser extends QueryGeneratorUser {
 
+    private QueryJdbcGeneratorUser(){
+
+    }
+
     public static String fetchQueryOneUser(String userName) {
 
         return "SELECT " + COLUMN1  + ", " + COLUMN2 + " from " + TABLENAME + WHERE + COLUMN2 + " = " + QUOTATIONMARKS + userName + QUOTATIONMARKS;

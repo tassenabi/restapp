@@ -16,9 +16,6 @@ import java.io.Serializable;
         pkColumnName="name", valueColumnName="seq",
         pkColumnValue="sqliteTestTable")
 @Table(name=QueryGeneratorUser.TABLENAME)
-@TableGenerator(name="sqlite", table="sqlite_sequence",
-        pkColumnName="name", valueColumnName="seq",
-        pkColumnValue="sqliteTestTable")
 public class UserForJpa extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;

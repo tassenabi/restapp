@@ -5,6 +5,7 @@ import com.tassenabi.restapp.entity.jpauser.UserForJpa;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class DaoUserJpaImpl implements IdaoEntity<User> {
 
     @Override
     public List<User> getAll() {
-        return null;
+        return new ArrayList<User>();
     }
 
     @Override

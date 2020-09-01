@@ -47,6 +47,7 @@ public class UserJpaRepositoryTest {
     @Test
     public void fetchOneUser_ShouldReturnCorrectUserName() {
 
+        userRepo.insertUser(new User("rooland"));
         //userRepo.insertUser();
         //Arrange Act
         //String expectedUserName = "Monti";

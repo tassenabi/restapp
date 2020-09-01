@@ -118,6 +118,6 @@ public class UserJDBCRepositoryTest {
     public void insertUser_IfUserAlreadyExistInDB_ShouldThrowException() {
 
         //Arrange Act
-        daoUser.insert("Monti");
+        daoUser.insert("Monti3333");
     }
 }
