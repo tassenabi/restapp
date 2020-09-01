@@ -14,11 +14,12 @@ public class DatabaseColumnValidator implements IDatabaseColumnValidator {
 
     private Statement statement;
     private boolean tblColumnTitleOrderValidate = false;
-    private IDatabaseJdbcConnection connection = new DataBaseJDBCConnection();
+    private IDatabaseJdbcConnection connection;
 
 
-    public DatabaseColumnValidator() throws SQLException {
+    public DatabaseColumnValidator(IDatabaseJdbcConnection connection) throws SQLException {
 
+        this.connection = connection;
         tblColumnTitleOrderValidate = isColumnOrderValidate();
 
     }
