@@ -34,3 +34,6 @@ build/
 
 ###mac os file system
 .DS_Store
+
+###Databases
+##.db
