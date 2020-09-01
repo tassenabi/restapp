@@ -36,9 +36,10 @@ public class ResetTestDataBase {
             ex.printStackTrace();
         }
 
-        Statement statement = connection.getDatabaseConnection().createStatement();
-        statement.executeUpdate(String.valueOf(queryDDLCommands));
-        statement.close();
+        try (Statement statement = connection.getDatabaseConnection().createStatement()) {
+            statement.executeUpdate(String.valueOf(queryDDLCommands));
+
+        }
         connection.closeDatabaseConnection();
 
         JOptionPane.showMessageDialog(null,"The database was successfully reset");
