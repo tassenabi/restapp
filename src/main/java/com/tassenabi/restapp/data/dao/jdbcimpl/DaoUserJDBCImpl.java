@@ -241,7 +241,11 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         return Optional.of(user);
     }
 
+<<<<<<< HEAD:src/main/java/com/tassenabi/restapp/data/dao/jdbcimpl/DaoUserJDBCImpl.java
  
+=======
+
+>>>>>>> beforeRefactoringDAOUser:src/main/java/com/tassenabi/restapp/data/dao/jdbcimpl/IdaoUserJDBCImpl.java
     //TODO Refactoring this methods belongs in a seperate class (SRP)
     private Connection openConnection()  {
 

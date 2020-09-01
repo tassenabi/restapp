@@ -84,7 +84,11 @@ public class UserJDBCRepositoryTest {
 
         //Arrange
         Optional<User> userBeforeUpdate = daoUser.get(userOne);
+<<<<<<< HEAD
         Assert.assertEquals(userOne, userBeforeUpdate);
+=======
+        Assert.assertEquals(userOne.getUserName(), userBeforeUpdate.get().getUserName());
+>>>>>>> beforeRefactoringDAOUser
 
         //Act
         daoUser.update(userOne, userForUpdate);

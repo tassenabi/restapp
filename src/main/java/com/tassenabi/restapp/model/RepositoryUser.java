@@ -40,6 +40,7 @@ public class RepositoryUser implements IRepositoryUser {
     public List<User> getAllUser(){
 
         return daoUser.getAll();
+<<<<<<< HEAD
     }
 
     @Override
@@ -47,4 +48,14 @@ public class RepositoryUser implements IRepositoryUser {
         return Optional.empty();
     }
 
+=======
+    }
+
+    @Override
+    public Optional<User> getUser(User user) {
+
+        return daoUser.get(user);
+    }
+
+>>>>>>> beforeRefactoringDAOUser
 }

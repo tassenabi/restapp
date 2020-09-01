@@ -9,6 +9,7 @@ import java.util.Optional;
  */
 
 public interface IdaoEntity<T> {
+<<<<<<< HEAD
 
     void insert(T t);
     List<T> getAll();
@@ -17,3 +18,13 @@ public interface IdaoEntity<T> {
     Optional<T> get(T t);
 
 }
+=======
+
+    void insert(T t);
+    List<T> getAll();
+    void deleteUser(T t);
+    void update(T t, T r);
+    Optional<T> get(T t);
+
+}
+>>>>>>> beforeRefactoringDAOUser
