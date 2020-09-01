@@ -18,9 +18,13 @@ public class DataBaseSource {
         throw new IllegalStateException("DataBaseSource.class is a utility class and should not be an instance");
     }
 
-    public static String getDataBaseName(){
+    static{
 
-        concatDatabaseConnectionString();
+        readProperties();
+
+    }
+
+    public static String getDataBaseName(){
 
         return databaseName;
     }
@@ -28,20 +32,14 @@ public class DataBaseSource {
     //TODO Refactoring -> 3 times call of concactMethod
     public static String getTestDatabaseName(){
 
-        concatDatabaseConnectionString();
-
         return testDatabaseName;
     }
     public static String getDataBaseLink(){
-
-        concatDatabaseConnectionString();
 
         return databaseDriverName + databasePath.getAbsolutePath()+ "/" + databaseName;
     }
 
     public static String getTestDataBaseLink(){
-
-        concatDatabaseConnectionString();
 
         return databaseDriverName + databasePath.getAbsolutePath()+ "/" + testDatabaseName;
     }
@@ -56,7 +54,7 @@ public class DataBaseSource {
                 "located here: " + databasePath.getAbsolutePath()+ "/" + testDatabaseName);
     }
 
-    private static void concatDatabaseConnectionString()  {
+    private static void readProperties()  {
 
         String absPath = new File("").getAbsolutePath();
         String appConfigPath = absPath + "//src//main//java//com//tassenabi//restapp//data//config//databaseconfig//dbConfig.properties";
