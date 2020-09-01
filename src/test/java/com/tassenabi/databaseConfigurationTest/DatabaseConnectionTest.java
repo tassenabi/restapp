@@ -42,7 +42,6 @@ public class DatabaseConnectionTest {
         //Assert
         assertNotNull(con);
         assertThat(true, is(isProductiveDatabase));
-
     }
 
     @Test

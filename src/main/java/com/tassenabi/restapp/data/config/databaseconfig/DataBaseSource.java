@@ -11,7 +11,6 @@ public class DataBaseSource {
     private static String databaseDriverName;
     private static File databasePath;
     private static String databaseName;
-    private static File testDatabasePath;
     private static String testDatabaseName;
 
     //Private Constructor because this is a utility class
@@ -26,6 +25,7 @@ public class DataBaseSource {
         return databaseName;
     }
 
+    //TODO Refactoring -> 3 times call of concactMethod
     public static String getTestDatabaseName(){
 
         concatDatabaseConnectionString();
@@ -43,7 +43,7 @@ public class DataBaseSource {
 
         concatDatabaseConnectionString();
 
-        return databaseDriverName + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName;
+        return databaseDriverName + databasePath.getAbsolutePath()+ "/" + testDatabaseName;
     }
 
     public static void getInfoSourceLinkDataBase(){
@@ -53,7 +53,7 @@ public class DataBaseSource {
 
     public static void getInfoSourceLinkDTestataBase(){
         JOptionPane.showMessageDialog(null,"The database of this application is : " +
-                "located here: " + testDatabasePath.getAbsolutePath()+ "/" + testDatabaseName);
+                "located here: " + databasePath.getAbsolutePath()+ "/" + testDatabaseName);
     }
 
     private static void concatDatabaseConnectionString()  {
@@ -74,7 +74,6 @@ public class DataBaseSource {
         databasePath = new File(appProps.getProperty("DATABASEPATH"));
         databaseName = appProps.getProperty("DATABASENAME");
 
-        testDatabasePath = new File(appProps.getProperty("TESTDATABASEPATH"));
         testDatabaseName = appProps.getProperty("TESTDATABASENAME");
 
     }

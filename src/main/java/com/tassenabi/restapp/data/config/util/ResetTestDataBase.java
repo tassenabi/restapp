@@ -19,7 +19,7 @@ public class ResetTestDataBase {
 
     }
 
-    public static void executeDDLScript() throws IOException, SQLException {
+    public static void executeDDLScript() throws SQLException {
 
         StringBuffer queryDDLCommands = new StringBuffer();
         IDatabaseJdbcConnection connection = new DatabaseJdbcConnectionForTesting();

@@ -11,6 +11,7 @@ public class DatabaseJDBCConnectionFactory {
     public Connection createDatabaseConnection(String databaseSourcePath){
 
         try {
+            //TODO Refactor --> Class.ForName dynamic laoding
             Class.forName("org.sqlite.JDBC");
             databaseConnection = DriverManager.getConnection(databaseSourcePath);
 
