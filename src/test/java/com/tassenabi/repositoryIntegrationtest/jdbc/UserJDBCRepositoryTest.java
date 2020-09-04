@@ -48,7 +48,7 @@ public class UserJDBCRepositoryTest {
     }
 
     @Test
-    public void fetchOneUser_ShouldReturnCorrectUserName() {
+    public void getUser_ShouldReturnCorrectUserName() {
 
         //Arrange Act
         userRepo.insertUser(userOne);
@@ -61,7 +61,7 @@ public class UserJDBCRepositoryTest {
     }
 
     @Test(expected = UserNotInDataBaseException.class)
-    public void fetchOneUser_ShouldThrowNotInDataBaseExceptionIfUserNotExist() {
+    public void getUser_ShouldThrowNotInDataBaseExceptionIfUserNotExist() {
 
         //Arrange
         userRepo.deleteUser(userOne);
@@ -72,7 +72,7 @@ public class UserJDBCRepositoryTest {
     }
 
     @Test
-    public void fetchAllUser_ShouldReturnCorrectAmountOfUser() {
+    public void getAllUser_ShouldReturnCorrectAmountOfUser() {
 
         //Arrange Act
         List<User> listUsers = daoUser.getAll();
@@ -86,11 +86,10 @@ public class UserJDBCRepositoryTest {
     public void updateUser_ShouldReturnUpdatedUser() {
 
         //Arrange
-        String userNameBefore = userRepo.getUser(userOne).get().getUserName();
-
         Optional<User> userBeforeUpdate = userRepo.getUser(userOne);
+        String userNameBefore = userBeforeUpdate.get().getUserName();
 
-        Assert.assertEquals(userOne.getUserName(), userBeforeUpdate.get().getUserName());
+        Assert.assertEquals(userOne.getUserName(), userNameBefore);
 
         //Act
         daoUser.update(userOne, userForUpdate);
@@ -104,7 +103,7 @@ public class UserJDBCRepositoryTest {
     }
 
     @Test(expected = UserNotInDataBaseException.class)
-    public void deleteUser_ShouldThrowExceptionIfFetchingAlreadyDeletedPrepaidObject() {
+    public void deleteUser_ShouldThrowExceptionIfAlreadyDeleted() {
 
         //Arrange
         daoUser.deleteUser(userOne);

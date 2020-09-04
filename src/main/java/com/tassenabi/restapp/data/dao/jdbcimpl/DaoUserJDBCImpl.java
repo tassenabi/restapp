@@ -64,7 +64,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
 
             if(allUsers.isEmpty()){
 
-                throw new UserNotInDataBaseException();
+                throw new UserNotInDataBaseException("Error: No User in Database");
 
             }
 
@@ -72,7 +72,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         } catch (SQLException e) {
 
             e.printStackTrace();
-
         }
 
         try {
@@ -213,7 +212,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
 
             } else {
 
-                throw new UserNotInDataBaseException();
+                throw new UserNotInDataBaseException("Error: No User in Database");
 
             }
 
