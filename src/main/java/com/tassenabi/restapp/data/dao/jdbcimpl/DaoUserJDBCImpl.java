@@ -49,6 +49,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
+    //TODO Change to PreparedStatement bc of SQL Injection
     public List<User> getAll() {
 
         allUsers.clear();
@@ -92,6 +93,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
+    //TODO Change to PreparedStatement bc of SQL Injection
     public void insert(User user){
         //Set firstLetter to upperCase and set last to lowerLetters
         String userName = formatUserNameForDatabase(user.getUserName());
@@ -125,6 +127,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
+    //TODO Change to PreparedStatement bc of SQL Injection
     public void deleteUser(User user) {
 
         //Set firstLetter to upperCase and set last to lowerLetters
@@ -158,6 +161,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
+    //TODO Change to PreparedStatement bc of SQL Injection
     public void update(User oldUser, User newUser) {
 
         //Set firstLetter to upperCase and set last to lowerLetters
@@ -191,6 +195,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
+    //TODO Change to PreparedStatement bc of SQL Injection
     public Optional<User> get(User user) {
         //Set firstLetter to upperCase and set last to lowerLetters
         String userName = formatUserNameForDatabase(user.getUserName());
