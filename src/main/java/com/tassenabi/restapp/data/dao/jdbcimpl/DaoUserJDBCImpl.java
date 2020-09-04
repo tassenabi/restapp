@@ -8,12 +8,9 @@ import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
 import com.tassenabi.restapp.data.config.util.ApplicationLogger;
 import com.tassenabi.restapp.exceptions.UserNotInDataBaseException;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Optional;
 
 import static com.tassenabi.restapp.data.querygenerator.jdbc.QueryJdbcGeneratorUser.COLUMN1;
@@ -28,7 +25,7 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
 
     private ArrayList<User> allUsers;
     private UserForJDBC user;
-    private Statement queryStatement;
+    private PreparedStatement queryStatement;
     private ResultSet queryResult;
     private IDatabaseJdbcConnection connection;
     private boolean isLoggerActivated;
@@ -49,7 +46,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
-    //TODO Change to PreparedStatement bc of SQL Injection
     public List<User> getAll() {
 
         allUsers.clear();
@@ -57,8 +53,8 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         try {
 
             String queryCommand = QueryJdbcGeneratorUser.fetchQueryAllUser();
-            queryStatement = createSQLStatement();
-            queryResult = queryStatement.executeQuery(queryCommand);
+            queryStatement = prepareStatement(queryCommand);
+            queryResult = queryStatement.executeQuery();
 
             while (queryResult.next()) {
 
@@ -93,16 +89,16 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
-    //TODO Change to PreparedStatement bc of SQL Injection
     public void insert(User user){
         //Set firstLetter to upperCase and set last to lowerLetters
         String userName = formatUserNameForDatabase(user.getUserName());
 
         try {
 
-            String queryCommand = QueryJdbcGeneratorUser.insertUserQuery(userName);
-            queryStatement = createSQLStatement();
-            queryStatement.executeUpdate(queryCommand);
+            String queryCommand = QueryJdbcGeneratorUser.insertUserQuery();
+            queryStatement = prepareStatement(queryCommand);
+            queryStatement.setString(2,userName);
+            queryStatement.executeUpdate();
 
             //Log the query
             if (isLoggerActivated) {
@@ -127,7 +123,6 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
-    //TODO Change to PreparedStatement bc of SQL Injection
     public void deleteUser(User user) {
 
         //Set firstLetter to upperCase and set last to lowerLetters
@@ -135,9 +130,10 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
 
         try {
 
-            String queryCommand = QueryJdbcGeneratorUser.deleteQueryUser(userName);
-            queryStatement = createSQLStatement();
-            queryStatement.executeUpdate(queryCommand);
+            String queryCommand = QueryJdbcGeneratorUser.deleteQueryUser();
+            queryStatement = prepareStatement(queryCommand);
+            queryStatement.setString(1, userName);
+            queryStatement.executeUpdate();
 
             //Log the query
             if (isLoggerActivated) {
@@ -161,17 +157,19 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
-    //TODO Change to PreparedStatement bc of SQL Injection
     public void update(User oldUser, User newUser) {
 
         //Set firstLetter to upperCase and set last to lowerLetters
         String previousUserName = formatUserNameForDatabase(oldUser.getUserName());
+        String newUserName = formatUserNameForDatabase(newUser.getUserName());
 
         try {
 
-            String queryCommand = QueryJdbcGeneratorUser.updateUserQuery(previousUserName, newUser.getUserName());
-            queryStatement = createSQLStatement();
-            queryStatement.executeUpdate(queryCommand);
+            String queryCommand = QueryJdbcGeneratorUser.updateUserQuery();
+            queryStatement = prepareStatement(queryCommand);
+            queryStatement.setString(1,newUserName);
+            queryStatement.setString(2,previousUserName);
+            queryStatement.executeUpdate();
 
             //Log the query
             if (isLoggerActivated) {
@@ -195,15 +193,15 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     @Override
-    //TODO Change to PreparedStatement bc of SQL Injection
     public Optional<User> get(User user) {
         //Set firstLetter to upperCase and set last to lowerLetters
         String userName = formatUserNameForDatabase(user.getUserName());
 
         try {
-            String queryCommand = QueryJdbcGeneratorUser.fetchQueryOneUser(userName);
-            queryStatement = createSQLStatement();
-            queryResult = queryStatement.executeQuery(queryCommand);
+            String queryCommand = QueryJdbcGeneratorUser.fetchQueryOneUser();
+            queryStatement = prepareStatement(queryCommand);
+            queryStatement.setString(1,userName);
+            queryResult = queryStatement.executeQuery();
 
             if (queryResult.next()) {
 
@@ -249,9 +247,9 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     }
 
     //TODO Refactoring this methods belongs in a seperate class (SRP)
-    private Statement createSQLStatement() throws SQLException {
+    private PreparedStatement prepareStatement(String query) throws SQLException {
 
-        return this.openConnection().createStatement();
+        return this.openConnection().prepareStatement(query);
 
     }
 
@@ -260,5 +258,4 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         user.setId(id);
         user.setUserName(userName);
     }
-
 }

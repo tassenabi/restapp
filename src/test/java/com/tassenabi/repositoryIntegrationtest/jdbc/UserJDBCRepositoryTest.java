@@ -32,6 +32,7 @@ public class UserJDBCRepositoryTest {
 
     @Before
     public void init(){
+
         userRepo.insertUser(userOne);
         userRepo.insertUser(userTwo);
         userRepo.insertUser(userThree);
@@ -45,10 +46,12 @@ public class UserJDBCRepositoryTest {
         userRepo.deleteUser(userThree);
 
     }
+
     @Test
     public void fetchOneUser_ShouldReturnCorrectUserName() {
 
         //Arrange Act
+        userRepo.insertUser(userOne);
         String expectedUserName = "Monti";
         Optional<User> actualUser = userRepo.getUser(userOne);
 

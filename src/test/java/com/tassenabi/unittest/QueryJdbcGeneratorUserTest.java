@@ -11,10 +11,10 @@ public class QueryJdbcGeneratorUserTest {
     public void fetchQueryUser_ShouldReturnCorrectQueryString() {
 
         //Arrange
-        String fetchQueryOneUser = "SELECT PK_id, TXT_userName from TBL_USER WHERE TXT_userName = 'Robert'";
+        String fetchQueryOneUser = "SELECT PK_id, TXT_userName from TBL_USER WHERE TXT_userName =  ? ";
 
         //Act
-        String result = QueryJdbcGeneratorUser.fetchQueryOneUser("Robert");
+        String result = QueryJdbcGeneratorUser.fetchQueryOneUser();
 
         //Assert
         assertEquals(result, fetchQueryOneUser);
@@ -24,10 +24,10 @@ public class QueryJdbcGeneratorUserTest {
     public void insertQueryUser_ShouldReturnCorrectQueryString() {
 
         //Arrange
-        String insertQueryOneUser = "INSERT INTO TBL_USER(PK_id,TXT_userName) VALUES (? ,'Robert')";
+        String insertQueryOneUser = "INSERT INTO TBL_USER(PK_id,TXT_userName) VALUES (? , ? )";
 
         //Act
-        String result = QueryJdbcGeneratorUser.insertUserQuery("Robert");
+        String result = QueryJdbcGeneratorUser.insertUserQuery();
 
         //Assert
         assertEquals(result, insertQueryOneUser);
@@ -37,10 +37,10 @@ public class QueryJdbcGeneratorUserTest {
     public void deleteQueryUser_ShouldReturnCorrectQueryString() {
 
         //Arrange
-        String deleteQueryOneUser = "DELETE FROM TBL_USER WHERE TXT_userName='Robert'";
+        String deleteQueryOneUser = "DELETE FROM TBL_USER WHERE TXT_userName= ? ";
 
         //Act
-        String result = QueryJdbcGeneratorUser.deleteQueryUser("Robert");
+        String result = QueryJdbcGeneratorUser.deleteQueryUser();
 
         //Assert
         assertEquals(result, deleteQueryOneUser);
@@ -50,10 +50,10 @@ public class QueryJdbcGeneratorUserTest {
     public void updateUser_ShouldReturnCorrectQueryString() {
 
         //Arrange
-        String updateQueryOneUser = "UPDATE TBL_USER SET TXT_userName = 'Robert2' WHERE TXT_userName = 'Robert'";
+        String updateQueryOneUser = "UPDATE TBL_USER SET TXT_userName =  ?  WHERE TXT_userName =  ? ";
 
         //Act
-        String result = QueryJdbcGeneratorUser.updateUserQuery("Robert", "Robert2");
+        String result = QueryJdbcGeneratorUser.updateUserQuery();
 
         //Assert
         assertEquals(result, updateQueryOneUser);

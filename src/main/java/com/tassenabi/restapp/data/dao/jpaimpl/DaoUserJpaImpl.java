@@ -24,14 +24,13 @@ public class DaoUserJpaImpl implements IdaoEntity<User> {
     @Override
     public void insert(User userName) {
 
-        UserForJpa userForJpa;
+        UserForJpa userForJpa = new UserForJpa();
         EntityManager entityManager = entityManagement.getEntityManager();
         EntityTransaction transaction = null;
         try{
             transaction = entityManager.getTransaction();
             transaction.begin();
 
-            userForJpa = new UserForJpa();
             userForJpa.setUserName(userName.getUserName());
 
             entityManager.persist(userForJpa);
@@ -66,6 +65,12 @@ public class DaoUserJpaImpl implements IdaoEntity<User> {
 
     @Override
     public Optional<User> get(User user) {
+
+        UserForJpa userForJpa = new UserForJpa();
+        EntityManager entityManager = entityManagement.getEntityManager();
+
+
+
 
         return Optional.ofNullable(user);
     }
