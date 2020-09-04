@@ -9,6 +9,10 @@ import com.tassenabi.restapp.model.IRepositoryUser;
 import com.tassenabi.restapp.model.RepositoryUser;
 import org.junit.*;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -33,6 +37,8 @@ public class UserJpaRepositoryTest {
         userRepo.insertUser(userTwo);
         userRepo.insertUser(userThree);
 
+        //useTestDataBase();
+
     }
 
     @After
@@ -47,7 +53,7 @@ public class UserJpaRepositoryTest {
     @Test
     public void fetchOneUser_ShouldReturnCorrectUserName() {
 
-        userRepo.insertUser(new User("rooland"));
+        userRepo.insertUser(new User("roolazasdasdjtztund"));
         //userRepo.insertUser();
         //Arrange Act
         //String expectedUserName = "Monti";
@@ -56,6 +62,18 @@ public class UserJpaRepositoryTest {
         //Arrange
         //assertThat(expectedUserName, is(actualUser.getUserName()));
 
+    }
+
+
+    private void useTestDataBase(){
+        EntityManagerFactory managerFactory = null;
+        Map<String, String> persistenceMap = new HashMap<String, String>();
+
+        String url = "jdbc:sqlite:/Users/tassenabi/IdeaProjects/restfulApp/restapp/src/main/java/com/tassenabi/sources/database/userTestdatabase.db";
+        persistenceMap.put("javax.persistence.jdbc.url", url);
+
+        managerFactory = Persistence.createEntityManagerFactory("restfulApp", persistenceMap);
+        //manager = managerFactory.createEntityManager();
     }
 
 }
