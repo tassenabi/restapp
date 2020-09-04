@@ -1,5 +1,6 @@
 package com.tassenabi.restapp.data.dao.jpaimpl;
 
+import com.tassenabi.restapp.data.config.entitymanagementjpa.EntityManagement;
 import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.entity.jpauser.UserForJpa;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
@@ -14,14 +15,17 @@ import java.util.Optional;
  */
 public class DaoUserJpaImpl implements IdaoEntity<User> {
 
-    private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("restfulApp");
+    private EntityManagement entityManagement;
 
+    public DaoUserJpaImpl(){
+        setDefaultEntityManagement();
+    }
 
     @Override
     public void insert(User userName) {
 
         UserForJpa userForJpa;
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = entityManagement.getEntityManager();
         EntityTransaction transaction = null;
         try{
             transaction = entityManager.getTransaction();
@@ -32,6 +36,7 @@ public class DaoUserJpaImpl implements IdaoEntity<User> {
 
             entityManager.persist(userForJpa);
             transaction.commit();
+
         }catch (Exception ex){
 
             if(transaction != null){
@@ -63,5 +68,13 @@ public class DaoUserJpaImpl implements IdaoEntity<User> {
     public Optional<User> get(User user) {
 
         return Optional.ofNullable(user);
+    }
+
+    private void setDefaultEntityManagement(){
+        this.entityManagement = new EntityManagement();
+    }
+
+    public void setEntityManagement(EntityManagement entityManagement) {
+        this.entityManagement = entityManagement;
     }
 }

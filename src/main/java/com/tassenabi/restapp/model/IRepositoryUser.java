@@ -7,7 +7,10 @@ import java.util.Optional;
 /**
  * If there will be more then repository (for another entity) then a marker interface would be
  * required --> in case with just one entity, even this Interface is not necessary
+ *
+ * I am using this Repository is an abstraction of a collection of objects.
  */
+
 public interface IRepositoryUser {
 
     List<User> getAllUser();

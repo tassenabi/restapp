@@ -1,12 +1,12 @@
 package com.tassenabi.restapp.data.dao;
 
-import com.tassenabi.restapp.entity.User;
 import java.util.List;
 import java.util.Optional;
 
 /**If there would be more then the entity User -> then is a marker interface also required
- *
+ * I am using DAO as an abstraction of data persistence.
  */
+
 
 public interface IdaoEntity<T> {
 
