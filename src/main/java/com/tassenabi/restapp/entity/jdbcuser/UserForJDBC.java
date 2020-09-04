@@ -41,4 +41,11 @@ public class UserForJDBC extends User {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "JDBCUser{" +
+                "id=" + id +
+                ", name='" + userName + '\'' +
+                '}';
+    }
 }
