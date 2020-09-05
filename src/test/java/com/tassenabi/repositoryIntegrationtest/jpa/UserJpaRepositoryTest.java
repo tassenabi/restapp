@@ -60,6 +60,7 @@ public class UserJpaRepositoryTest {
         assertThat(expectedUserName, is(actualUserName));
     }
 
+    @Ignore
     @Test(expected = javax.persistence.NoResultException.class)
     public void getUser_ShouldThrowNotInDataBaseExceptionIfUserNotExist() {
 

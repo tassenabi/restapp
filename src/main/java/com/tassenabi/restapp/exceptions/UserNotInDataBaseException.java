@@ -13,7 +13,6 @@ public class UserNotInDataBaseException extends RuntimeException {
     public UserNotInDataBaseException(String errorMessage){
 
         super(errorMessage);
-        JOptionPane.showMessageDialog(null, "This user is not in database");
 
     }
 }
