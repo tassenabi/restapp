@@ -1,4 +1,4 @@
-package com.tassenabi.repositoryIntegrationtest.jpa;
+package com.tassenabi.integrationtest.jpa;
 
 import com.tassenabi.databaseConfigurationTest.util.EntityManagementForTesting;
 import com.tassenabi.restapp.data.dao.jpaimpl.DaoUserJpaImpl;

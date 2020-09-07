@@ -30,24 +30,13 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     private PreparedStatement queryStatement;
     private ResultSet queryResult;
     private IDatabaseJdbcConnection connection;
-    private boolean isLoggerActivated;
+    private boolean isLoggerActivated = false;
 
-    private DaoUserJDBCImpl(){
+    public DaoUserJDBCImpl(){
+
         user = new UserForJDBC();
         allUsers = new ArrayList<>();
         this.connection = DatabaseJdbcConnection.getInstance();
-    }
-
-    public void activateTestDatabase(){
-        this.connection = DatabaseJdbcConnectionForTesting.getInstance();
-    }
-    //This constructor is for test database
-    //TestDBConnection is the implementation for IDBConnection
-    public DaoUserJDBCImpl(boolean isLoggerActivated) {
-
-        this();
-        this.isLoggerActivated = isLoggerActivated;
-
     }
 
     @Override
@@ -241,7 +230,12 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
         return Optional.of(user);
     }
 
-
+    public void activateLogger(){
+        isLoggerActivated = true;
+    }
+    public void activateTestDatabase(){
+        this.connection = DatabaseJdbcConnectionForTesting.getInstance();
+    }
 
     //TODO Refactoring this methods belongs in a seperate class (SRP)
     private Connection openConnection()  {

@@ -32,7 +32,6 @@ public class DatabaseJdbcConnectionForTesting implements IDatabaseJdbcConnection
     public Connection getDatabaseConnection(){
 
         return connection;
-
     }
 
     public static DatabaseJdbcConnectionForTesting getInstance() {

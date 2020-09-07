@@ -1,7 +1,7 @@
-package com.tassenabi.restapp.data.config.util;
+package com.tassenabi.databaseConfigurationTest.util;
 
-import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
 import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnectionForTesting;
+import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
 
 import javax.swing.*;
 import java.io.BufferedReader;

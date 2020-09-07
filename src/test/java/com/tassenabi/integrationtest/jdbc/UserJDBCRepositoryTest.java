@@ -1,4 +1,4 @@
-package com.tassenabi.repositoryIntegrationtest.jdbc;
+package com.tassenabi.integrationtest.jdbc;
 
 import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.data.dao.jdbcimpl.DaoUserJDBCImpl;
