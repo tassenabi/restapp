@@ -1,5 +1,6 @@
 package com.tassenabi.databaseConfigurationTest.util;
 
+import com.tassenabi.restapp.data.config.databaseconfig.DataBaseSource;
 import com.tassenabi.restapp.data.config.entitymanagementjpa.EntityManagement;
 
 import javax.persistence.EntityManager;
@@ -10,8 +11,7 @@ import java.util.Map;
 
 public class EntityManagementForTesting extends EntityManagement {
 
-    private static String testDatabaseURL = "jdbc:sqlite:/Users/tassenabi/IdeaProjects/restfulApp/restapp/src/main/java/com/tassenabi/sources/database/userTestdatabase.db";
-
+    private static String testDatabaseURL = DataBaseSource.getTestDataBaseUrl();
     private static EntityManagerFactory entityManagerFactory;
 
     static {

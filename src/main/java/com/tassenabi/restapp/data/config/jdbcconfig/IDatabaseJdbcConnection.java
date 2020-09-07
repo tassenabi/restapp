@@ -6,5 +6,4 @@ public interface IDatabaseJdbcConnection {
 
     Connection connection = null;
     Connection getDatabaseConnection();
-    void closeDatabaseConnection();
 }

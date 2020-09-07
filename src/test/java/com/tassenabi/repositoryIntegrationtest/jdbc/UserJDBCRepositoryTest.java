@@ -1,10 +1,7 @@
 package com.tassenabi.repositoryIntegrationtest.jdbc;
 
 import com.tassenabi.restapp.entity.User;
-import com.tassenabi.restapp.data.dao.IdaoEntity;
 import com.tassenabi.restapp.data.dao.jdbcimpl.DaoUserJDBCImpl;
-import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
-import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnectionForTesting;
 import com.tassenabi.restapp.exceptions.UserNotInDataBaseException;
 import com.tassenabi.restapp.model.IRepositoryUser;
 import com.tassenabi.restapp.model.RepositoryUser;
@@ -18,8 +15,7 @@ import static org.junit.Assert.assertThat;
 
 public class UserJDBCRepositoryTest {
 
-    IDatabaseJdbcConnection dbConnection = new DatabaseJdbcConnectionForTesting();
-    IdaoEntity daoUser = new DaoUserJDBCImpl(dbConnection, false);
+    DaoUserJDBCImpl daoUser = new DaoUserJDBCImpl(false);
     IRepositoryUser userRepo = new RepositoryUser(daoUser);
 
     private User userOne = new User("Monti");
@@ -33,6 +29,7 @@ public class UserJDBCRepositoryTest {
     @Before
     public void init(){
 
+        daoUser.activateTestDatabase();
         userRepo.insertUser(userOne);
         userRepo.insertUser(userTwo);
         userRepo.insertUser(userThree);
@@ -51,7 +48,6 @@ public class UserJDBCRepositoryTest {
     public void getUser_ShouldReturnCorrectUserName() {
 
         //Arrange Act
-        userRepo.insertUser(userOne);
         String expectedUserName = "Monti";
         Optional<User> actualUser = userRepo.getUser(userOne);
 
@@ -120,6 +116,6 @@ public class UserJDBCRepositoryTest {
     public void insertUser_IfUserAlreadyExistInDB_ShouldThrowException() {
 
         //Arrange Act
-        daoUser.insert("Monti3333");
+
     }
 }

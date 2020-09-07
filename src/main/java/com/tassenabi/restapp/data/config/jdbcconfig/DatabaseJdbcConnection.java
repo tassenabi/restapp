@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class DatabaseJdbcConnection implements IDatabaseJdbcConnection {
 
     private static String databaseClassNameDriver = DataBaseSource.getDatabaseClassNameDriver();
-    private static String databaseSourcePath = DataBaseSource.getDataBaseLink();
+    private static String databaseSourcePath = DataBaseSource.getDataBaseUrl();
     private static DatabaseJdbcConnection instance;
 
     private static Connection connection;

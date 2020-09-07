@@ -1,5 +1,7 @@
 package com.tassenabi.restapp.data.dao.jdbcimpl;
 
+import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnection;
+import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnectionForTesting;
 import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.entity.jdbcuser.UserForJDBC;
 import com.tassenabi.restapp.data.dao.IdaoEntity;
@@ -31,16 +33,19 @@ public class DaoUserJDBCImpl implements IdaoEntity<User> {
     private boolean isLoggerActivated;
 
     private DaoUserJDBCImpl(){
-
-    }
-
-    //This constructor is for test database
-    //TestDBConnection is the implementation for IDBConnection
-    public DaoUserJDBCImpl(IDatabaseJdbcConnection connectToTestDatabase, boolean isLoggerActivated) {
-
         user = new UserForJDBC();
         allUsers = new ArrayList<>();
-        this.connection = connectToTestDatabase;
+        this.connection = DatabaseJdbcConnection.getInstance();
+    }
+
+    public void activateTestDatabase(){
+        this.connection = DatabaseJdbcConnectionForTesting.getInstance();
+    }
+    //This constructor is for test database
+    //TestDBConnection is the implementation for IDBConnection
+    public DaoUserJDBCImpl(boolean isLoggerActivated) {
+
+        this();
         this.isLoggerActivated = isLoggerActivated;
 
     }

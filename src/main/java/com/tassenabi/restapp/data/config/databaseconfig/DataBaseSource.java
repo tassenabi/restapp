@@ -8,6 +8,7 @@ import java.util.Properties;
 
 public class DataBaseSource {
 
+    private static String getDatabaseClassNameDriver;
     private static String databaseDriverName;
     private static File databasePath;
     private static String databaseName;
@@ -24,34 +25,19 @@ public class DataBaseSource {
 
     }
 
-    public static String getDataBaseName(){
-
-        return databaseName;
-    }
-
     //TODO Refactoring -> 3 times call of concactMethod
     public static String getTestDatabaseName(){
 
         return testDatabaseName;
     }
-    public static String getDataBaseLink(){
+    public static String getDataBaseUrl(){
 
         return databaseDriverName + databasePath.getAbsolutePath()+ "/" + databaseName;
     }
 
-    public static String getTestDataBaseLink(){
+    public static String getTestDataBaseUrl(){
 
         return databaseDriverName + databasePath.getAbsolutePath()+ "/" + testDatabaseName;
-    }
-
-    public static void getInfoSourceLinkDataBase(){
-        JOptionPane.showMessageDialog(null,"The database of this application is : " +
-                "located here: " + databasePath.getAbsolutePath()+ "/" + databaseName);
-    }
-
-    public static void getInfoSourceLinkDTestataBase(){
-        JOptionPane.showMessageDialog(null,"The database of this application is : " +
-                "located here: " + databasePath.getAbsolutePath()+ "/" + testDatabaseName);
     }
 
     private static void readProperties()  {
@@ -73,6 +59,16 @@ public class DataBaseSource {
         databaseName = appProps.getProperty("DATABASENAME");
 
         testDatabaseName = appProps.getProperty("TESTDATABASENAME");
+        getDatabaseClassNameDriver = appProps.getProperty("DATABASECLASSNAMEDRIVER");
 
+    }
+
+    public static String getDatabaseClassNameDriver() {
+
+        return getDatabaseClassNameDriver;
+    }
+    public static void main(String[] args) {
+        System.out.println(DataBaseSource.getDatabaseClassNameDriver());
+        System.out.println(DataBaseSource.getDataBaseUrl());
     }
 }

@@ -1,7 +1,6 @@
 package com.tassenabi.databaseConfigurationTest.util;
 
 import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
-import com.tassenabi.restapp.data.config.jdbcconfig.DataBaseJDBCConnection;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
