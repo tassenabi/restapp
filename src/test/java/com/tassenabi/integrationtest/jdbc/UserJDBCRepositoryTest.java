@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 
 public class UserJDBCRepositoryTest {
 
-    DaoUserJDBCImpl daoUser = new DaoUserJDBCImpl(false);
+    DaoUserJDBCImpl daoUser = new DaoUserJDBCImpl();
     IRepositoryUser userRepo = new RepositoryUser(daoUser);
 
     private User userOne = new User("Monti");
