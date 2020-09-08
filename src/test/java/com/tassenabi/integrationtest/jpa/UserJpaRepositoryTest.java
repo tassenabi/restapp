@@ -5,14 +5,13 @@ import com.tassenabi.restapp.data.dao.jpaimpl.DaoUserJpaImpl;
 import com.tassenabi.restapp.entity.User;
 import com.tassenabi.restapp.model.IRepositoryUser;
 import com.tassenabi.restapp.model.RepositoryUser;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserJpaRepositoryTest {
 
@@ -27,7 +26,7 @@ public class UserJpaRepositoryTest {
 
     private int numberOfUsersInDatabase = 3;
 
-    @Before
+    @BeforeEach
     public void init(){
 
         daoUser.setEntityManagement(entityManagementForTesting);
@@ -37,7 +36,7 @@ public class UserJpaRepositoryTest {
 
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
 
         userRepo.deleteUser(userOne);
@@ -57,26 +56,32 @@ public class UserJpaRepositoryTest {
         String actualUserName = actualUser.get().getUserName();
 
         //Assert
-        assertThat(expectedUserName, is(actualUserName));
+        assertEquals(expectedUserName, (actualUserName));
     }
 
-    @Ignore
-    @Test(expected = javax.persistence.NoResultException.class)
+    @Disabled
+    @Test
     public void getUser_ShouldThrowNotInDataBaseExceptionIfUserNotExist() {
 
         //Arrange
         userRepo.deleteUser(userOne);
 
-        //Act
-        userRepo.getUser(userOne);
-
+        //Act // Assert
+        assertThrows(
+                javax.persistence.NoResultException.class,
+                () -> { userRepo.getUser(userOne); }
+        );
     }
 
-    @Test(expected = javax.persistence.PersistenceException.class)
+    @Test
     public void insertOneUserAlreadyExist_ShouldReturnException() {
 
-        //Arrange Act
-        userRepo.insertUser(userOne);
+        //Arrange // Act // Assert
+        assertThrows(
+                Exception.class,
+                () -> { userRepo.insertUser(userOne); }
+        );
+
     }
 
     @Test
@@ -86,7 +91,7 @@ public class UserJpaRepositoryTest {
         List<User> listUsers = daoUser.getAll();
 
         //Assert
-        assertThat(listUsers.size(), is(numberOfUsersInDatabase));
+        assertEquals(listUsers.size(), (numberOfUsersInDatabase));
 
     }
 
@@ -97,16 +102,15 @@ public class UserJpaRepositoryTest {
         Optional<User> userBeforeUpdate = userRepo.getUser(userOne);
         String userNameBefore = userBeforeUpdate.get().getUserName();
 
-        Assert.assertEquals(userOne.getUserName(), userNameBefore);
+        assertEquals(userOne.getUserName(), userNameBefore);
 
         //Act
         daoUser.update(userOne, userForUpdate);
         Optional<User> userAfterUpdate = daoUser.get(userForUpdate);
 
         //Assert
-        Assert.assertEquals(userForUpdate.getUserName(), userAfterUpdate.get().getUserName());
+        assertEquals(userForUpdate.getUserName(), userAfterUpdate.get().getUserName());
 
         daoUser.deleteUser(userForUpdate);
-
     }
 }

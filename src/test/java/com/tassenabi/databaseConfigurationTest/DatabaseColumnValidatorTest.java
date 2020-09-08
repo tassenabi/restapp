@@ -4,11 +4,13 @@ import com.tassenabi.databaseConfigurationTest.util.IDatabaseColumnValidator;
 import com.tassenabi.databaseConfigurationTest.util.DatabaseColumnValidator;
 import com.tassenabi.restapp.data.config.jdbcconfig.DatabaseJdbcConnectionForTesting;
 import com.tassenabi.restapp.data.config.jdbcconfig.IDatabaseJdbcConnection;
-import org.junit.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class DatabaseColumnValidatorTest {
 

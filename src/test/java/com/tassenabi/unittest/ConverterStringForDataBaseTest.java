@@ -1,10 +1,9 @@
 package com.tassenabi.unittest;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.tassenabi.restapp.data.config.util.ConverterStringForDataBase.formatUserNameForDatabase;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConverterStringForDataBaseTest {
 
@@ -18,7 +17,7 @@ public class ConverterStringForDataBaseTest {
         String actualValue = formatUserNameForDatabase("robert");
 
         //Assert
-        assertThat(actualValue, is(expectedValue));
+        assertEquals(actualValue, (expectedValue));
 
     }
 
@@ -32,7 +31,7 @@ public class ConverterStringForDataBaseTest {
         String actualValue = formatUserNameForDatabase(" robert ");
 
         //Assert
-        assertThat(actualValue, is(expectedValue));
+        assertEquals(actualValue, (expectedValue));
 
     }
 
@@ -46,7 +45,7 @@ public class ConverterStringForDataBaseTest {
         String actualValue = formatUserNameForDatabase("rObert");
 
         //Assert
-        assertThat(actualValue, is(expectedValue));
+        assertEquals(actualValue, (expectedValue));
 
     }
 
@@ -60,7 +59,6 @@ public class ConverterStringForDataBaseTest {
         String actualValue = formatUserNameForDatabase("?robert ");
 
         //Assert
-        assertThat(actualValue, is(expectedValue));
-
+        assertEquals(actualValue, (expectedValue));
     }
 }

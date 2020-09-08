@@ -1,11 +1,12 @@
 package com.tassenabi.databaseConfigurationTest;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
 
 public class ResetTestDataBaseTest {
 
-    @Ignore
+    @Disabled
     @Test
     public void executeDDLScript_ShouldResetTestDataBase(){
 

@@ -5,13 +5,15 @@ import com.tassenabi.restapp.data.dao.jdbcimpl.DaoUserJDBCImpl;
 import com.tassenabi.restapp.exceptions.UserNotInDataBaseException;
 import com.tassenabi.restapp.model.IRepositoryUser;
 import com.tassenabi.restapp.model.RepositoryUser;
-import org.junit.*;
-
 import java.util.List;
 import java.util.Optional;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserJDBCRepositoryTest {
 
@@ -26,7 +28,7 @@ public class UserJDBCRepositoryTest {
 
     private int numberOfUsersInDatabase = 3;
 
-    @Before
+    @BeforeEach
     public void init(){
 
         daoUser.activateTestDatabase();
@@ -36,7 +38,7 @@ public class UserJDBCRepositoryTest {
 
     }
 
-    @After
+    @AfterEach
     public void tearDown(){
         userRepo.deleteUser(userOne);
         userRepo.deleteUser(userTwo);
@@ -52,19 +54,21 @@ public class UserJDBCRepositoryTest {
         Optional<User> actualUser = userRepo.getUser(userOne);
 
         //Arrange
-        assertThat(expectedUserName, is(actualUser.get().getUserName()));
+        assertEquals(expectedUserName, actualUser.get().getUserName());
 
     }
 
-    @Test(expected = UserNotInDataBaseException.class)
+    @Test
     public void getUser_ShouldThrowNotInDataBaseExceptionIfUserNotExist() {
 
         //Arrange
         userRepo.deleteUser(userOne);
 
-        //Act
-        userRepo.getUser(userOne);
-
+        //Act // Assert
+        assertThrows(
+                UserNotInDataBaseException.class,
+                () -> { userRepo.getUser(userOne); }
+        );
     }
 
     @Test
@@ -74,7 +78,7 @@ public class UserJDBCRepositoryTest {
         List<User> listUsers = daoUser.getAll();
 
         //Assert
-        assertThat(listUsers.size(), is(numberOfUsersInDatabase));
+        assertEquals(listUsers.size(), numberOfUsersInDatabase);
 
     }
 
@@ -85,37 +89,16 @@ public class UserJDBCRepositoryTest {
         Optional<User> userBeforeUpdate = userRepo.getUser(userOne);
         String userNameBefore = userBeforeUpdate.get().getUserName();
 
-        Assert.assertEquals(userOne.getUserName(), userNameBefore);
+        assertEquals(userOne.getUserName(), userNameBefore);
 
         //Act
         daoUser.update(userOne, userForUpdate);
         Optional<User> userAfterUpdate = daoUser.get(userForUpdate);
 
         //Assert
-        Assert.assertEquals(userForUpdate.getUserName(), userAfterUpdate.get().getUserName());
+        assertEquals(userForUpdate.getUserName(), userAfterUpdate.get().getUserName());
 
         daoUser.deleteUser(userForUpdate);
-
-    }
-
-    @Test(expected = UserNotInDataBaseException.class)
-    public void deleteUser_ShouldThrowExceptionIfAlreadyDeleted() {
-
-        //Arrange
-        daoUser.deleteUser(userOne);
-
-        //Act
-        daoUser.get(userOne);
-
-    }
-
-    //TODO SQLite Exception not in maven package ... need to find
-    @Ignore
-    @Test
-    //@Test(expected = org.sqlite.SQLiteErrorCode.SQLiteConstraintException.class)
-    public void insertUser_IfUserAlreadyExistInDB_ShouldThrowException() {
-
-        //Arrange Act
 
     }
 }
